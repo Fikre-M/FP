@@ -17,7 +17,7 @@ export default function Header() {
           <li><Link to="/" className="hover:text-blue-600">Home</Link></li>
           <li><Link to="/about" className="hover:text-blue-600">About</Link></li>
           <li><Link to="/works" className="hover:text-blue-600">Works</Link></li>
-          <li><Link to="/contact" className="hover:text-blue-600">Contact</Link></li>
+          <li><Link to="/contact" className="hover:text-blue-600">Let's talk</Link></li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -47,7 +47,7 @@ export default function Header() {
           <li><Link to="/" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setIsOpen(false)}>Home</Link></li>
           <li><Link to="/about" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link to="/works" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setIsOpen(false)}>Works</Link></li>
-          <li><Link to="/contact" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setIsOpen(false)}>Contact</Link></li>
+          <li><Link to="/contact" className="block py-2 text-gray-700 hover:text-blue-600" onClick={() => setIsOpen(false)}>Let's talk</Link></li>
         </ul>
       )}
     </header>
