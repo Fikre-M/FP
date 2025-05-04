@@ -6,10 +6,11 @@ import Header from './Components/Header/Header'
 
 function App() {
   return (
-    <div className="bg-[#242424] text-[rgba(255,255,255,0.87)] font-sans leading-relaxed font-normal min-h-screen">
-      {/* Your app content */}
+    <div className="min-h-screen bg-gray-100">
       <Header />
     </div>
   );
 }
+
+
 export default App
