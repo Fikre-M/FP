@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import './App.css'
+import Header from './Components/Header/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      Portfolio 
-    </>
-  )
+    <div className="bg-[#242424] text-[rgba(255,255,255,0.87)] font-sans leading-relaxed font-normal min-h-screen">
+      {/* Your app content */}
+      <Header />
+    </div>
+  );
 }
-
 export default App
