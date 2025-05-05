@@ -5,7 +5,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="bg-black text-white min-h-screen"     >
+    <header className="bg-black shadow-md mb-4">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-blue-600">
