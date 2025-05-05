@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import se2Image from "../../assets/images/se2.jpg";
 
 export default function ThreeBoxes() {
   return (
@@ -9,12 +10,12 @@ export default function ThreeBoxes() {
           to="/big-page"
           className="col-span-1 md:col-span-2 bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer p-6"
         >
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-7">
             {/* Circular image */}
             <img
-              src="https://via.placeholder.com/150"
+              src={se2Image}
               alt="Fikre"
-              className="w-32 h-32 rounded-full object-cover flex-shrink-0"
+              className="w-72 h-72 rounded-full object-cover flex-shrink-0"
             />
 
             {/* Text content */}
