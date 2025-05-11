@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Logo at top center */}
         <div className="text-2xl font-bold text-blue-600 mb-6">
-          <Link to="/">Logo</Link>
+          <Link to="/">azAge</Link>
         </div>
 
         {/* Optional content below logo */}

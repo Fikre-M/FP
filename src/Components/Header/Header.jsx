@@ -9,7 +9,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-blue-600">
-          <Link to="/">Logo</Link>
+          <Link to="/">azAge</Link>
         </div>
 
         {/* Desktop Menu */}
