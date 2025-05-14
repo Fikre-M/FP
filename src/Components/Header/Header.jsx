@@ -5,7 +5,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="bg-black shadow-md mb-4">
+    <header className="bg-#141F2E shadow-md mb-4">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-blue-600">
@@ -13,7 +13,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-gray-700">
+        <ul className="hidden md:flex space-x-8 text-white-700 text-lg font-medium">
           <li>
             <Link to="/" className="hover:text-blue-600">
               Home

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-8">
+    <footer className="bg-#141F2E text-white py-8">
       <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Logo at top center */}
         <div className="text-2xl font-bold text-blue-600 mb-6">
@@ -16,7 +16,7 @@ export default function Footer() {
 
         {/* Navigation links */}
         <nav>
-          <ul className="flex space-x-12 text-gray-700 text-lg font-medium">
+          <ul className="flex space-x-12 text-white-700 text-lg font-medium">
             <li>
               <Link to="/" className="hover:text-blue-600">
                 Home
