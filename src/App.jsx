@@ -6,6 +6,7 @@ import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer';
 import ThreeBoxes from './Components/ThreeBoxes/ThreeBoxes';
 import Boxes from './Components/ThreeBoxesf/ThreeBoxesf';
+import Projects from './Components/Projects/Projects';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <ThreeBoxes />
       <Boxes />
+      <Projects />
       <Footer />
     </>
 
