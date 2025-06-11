@@ -7,6 +7,7 @@ import Footer from './Components/Footer/Footer';
 import ThreeBoxes from './Components/ThreeBoxes/ThreeBoxes';
 import Boxes from './Components/ThreeBoxesf/ThreeBoxesf';
 import Projects from './Components/Projects/Projects';
+import ContactSection from './Components/ContactSection/ContactSection';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <ThreeBoxes />
       <Boxes />
       <Projects />
+      <ContactSection />
       <Footer />
     </>
 
