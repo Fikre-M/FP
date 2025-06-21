@@ -1,6 +1,7 @@
-import React from "react";
+// import React from "react";
+import React, { useState, useEffect } from "react";
 
-
+// 1. Your projects array (update local image paths as needed)
 const projects = [
     {
         title: "Programming",
@@ -63,6 +64,30 @@ const projects = [
         "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
     },
     ];
+
+    // 2. Custom hook for image loading/error state
+function useImage(src) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!src) return;
+    setLoaded(false);
+    setError(false);
+    const img = new window.Image();
+    img.src = src;
+    img.onload = () => setLoaded(true);
+    img.onerror = () => setError(true);
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src]);
+
+  return { loaded, error };
+}
+
+// 3. Advanced Projects component
 
     export default function Projects() {
     return (
