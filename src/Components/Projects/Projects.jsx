@@ -3,67 +3,64 @@ import React, { useState, useEffect } from "react";
 
 // 1. Your projects array (update local image paths as needed)
 const projects = [
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "/assets/images/apple_bootstrap.jpg",
-    },
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-        title: "Programming",
-        emoji: "💻",
-        description: "JavaScript, Python, Java",
-        github: "https://github.com/",
-        website: "https://yourwebsite.com/",
-        details: "https://yourdetails.com/",
-        image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    },
-    ];
+  {
+    title: "Apple",
+    emoji: "💻",
+    description: "React, Node.js, MySQL",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image: "../../images/apple_bootstrap.jpg",
+  },
+
+  {
+    title: "Programming",
+    emoji: "💻",
+    description: "JavaScript, Python, Java",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image: "../../images/evangadi_forum.jpg",
+  },
+  {
+    title: "Programming",
+    emoji: "💻",
+    description: "JavaScript, Python, Java",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image: "../../images/amazon.jpg",
+  },
+  {
+    title: "Programming",
+    emoji: "💻",
+    description: "JavaScript, Python, Java",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image: "../../images/netflix.jpg",
+  },
+  {
+    title: "Programming",
+    emoji: "💻",
+    description: "JavaScript, Python, Java",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    title: "Programming",
+    emoji: "💻",
+    description: "JavaScript, Python, Java",
+    github: "https://github.com/",
+    website: "https://yourwebsite.com/",
+    details: "https://yourdetails.com/",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+  },
+];
 
     // 2. Custom hook for image loading/error state
 function useImage(src) {

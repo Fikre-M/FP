@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import se2Image from "../../assets/images/se2.jpg";
+import se2Image from "../../assets/se2.jpg";
 
 export default function ThreeBoxes() {
   return (
