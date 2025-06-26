@@ -14,7 +14,9 @@ export default function Header() {
         </div> */}
         {/* Logo */}
         <Link to="/">
-          <Logo />
+          <div className="text-white dark:text-white w-48">
+            <Logo />
+          </div>
         </Link>
 
         {/* Desktop Menu */}
