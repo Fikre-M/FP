@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../Logo/Logo';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -8,9 +9,13 @@ export default function Header() {
     <header className="bg-#141F2E shadow-md mb-4">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-blue-600">
+        {/* <div className="text-2xl font-bold text-blue-600">
           <Link to="/">azAge</Link>
-        </div>
+        </div> */}
+        {/* Logo */}
+        <Link to="/">
+          <Logo />
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-white-700 text-lg font-medium">
