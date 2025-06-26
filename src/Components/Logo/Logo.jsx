@@ -30,27 +30,26 @@ const Logo = () => {
             />
 
             {/* Z */}
-            {/* Z (inverted) */}
             <line
             x1="70"
             y1="25"
-            x2="110"
+            x2="120"
             y2="25"
             stroke="#FFFFFF"
             strokeWidth="16"
             />
             <line
-            x1="110"
-            y1="25"
-            x2="70"
-            y2="100"
+            x1="113"
+            y1="30"
+            x2="75"
+            y2="98"
             stroke="#FFFFFF"
             strokeWidth="16"
             />
             <line
             x1="70"
             y1="100"
-            x2="110"
+            x2="120"
             y2="100"
             stroke="#FFFFFF"
             strokeWidth="16"
@@ -98,7 +97,7 @@ const Logo = () => {
             <line
             x1="280"
             y1="20"
-            x2="320"
+            x2="340"
             y2="20"
             stroke="blue"
             strokeWidth="16"
@@ -106,7 +105,7 @@ const Logo = () => {
             <line
             x1="280"
             y1="60"
-            x2="310"
+            x2="315"
             y2="60"
             stroke="blue"
             strokeWidth="16"
@@ -114,7 +113,7 @@ const Logo = () => {
             <line
             x1="280"
             y1="100"
-            x2="320"
+            x2="340"
             y2="100"
             stroke="blue"
             strokeWidth="16"
