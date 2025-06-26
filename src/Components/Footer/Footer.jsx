@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
+import Logo from "../Logo/Logo";
 
 export default function Footer() {
   return (
     <footer className="bg-#141F2E text-white py-8">
       <div className="container mx-auto px-4 flex flex-col items-center">
         {/* Logo at top center */}
-        <div className="text-2xl font-bold text-blue-600 mb-6">
+        {/* <div className="text-2xl font-bold text-blue-600 mb-6">
           <Link to="/">azAge</Link>
-        </div>
+        </div> */}
+
+        <Link to="/">
+          <div className="text-white dark:text-white w-48">
+            <Logo />
+          </div>
+        </Link>
 
         {/* Optional content below logo */}
         <p className="text-center text-gray-600 max-w-md mb-8">
