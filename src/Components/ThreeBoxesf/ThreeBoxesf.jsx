@@ -9,7 +9,7 @@ export default function Boxes() {
             to="/small-page-1"
             className="bg-blue-600 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex items-center justify-center h-64"
             >
-            <h3 className="text-xl font-semibold text-white">Projects</h3>
+            <h3 className="text-xl font-semibold text-white">Works</h3>
             </Link>
 
             {/* Big box in the middle, spans 2 columns */}
