@@ -90,7 +90,7 @@ function useImage(src) {
     return (
       <>
         <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full">
-          My Projects
+          Works
           <span className="block mx-auto mt-3 h-1 w-24 bg-blue-500 rounded"></span>
         </h2>
 
