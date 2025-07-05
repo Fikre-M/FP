@@ -15,7 +15,7 @@ function App() {
     <>
       <Header />
       <ThreeBoxes />
-      <Boxes />
+      {/* <Boxes /> */}
       <Projects />
       <ContactSection />
       <Footer />
