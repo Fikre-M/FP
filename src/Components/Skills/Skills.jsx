@@ -51,9 +51,9 @@ export default function Skills() {
             <FaPython className="text-yellow-400 text-5xl mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Python</h3>
             <p className="text-gray-300 text-center">
-              Proficient in managing data with MySQL (relational databases) and
-              MongoDB (NoSQL databases), leveraging structured and flexible
-              schema designs for efficient data storage and retrieval.
+              Skilled in using Git and GitHub for efficient version control,
+              collaboration, and code management, leveraging local tracking,
+              branching, and cloud-based hosting for seamless team workflow.
             </p>
           </div>
           {/* Skill 4 */}
@@ -64,7 +64,9 @@ export default function Skills() {
             <FaDatabase className="text-purple-400 text-5xl mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Databases</h3>
             <p className="text-gray-300 text-center">
-              SQL/NoSQL database design and management.
+              Skilled in using Git and GitHub for efficient version control,
+              collaboration, and code management, leveraging local tracking,
+              branching, and cloud-based hosting for seamless team workflow.
             </p>
           </div>
         </div>
