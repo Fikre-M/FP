@@ -24,7 +24,9 @@ export default function Skills() {
             <FaReact className="text-blue-400 text-5xl mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">React</h3>
             <p className="text-gray-300 text-center">
-              Building interactive UIs with React and hooks.
+              Skilled in crafting engaging web experiences with HTML, CSS,
+              JavaScript, Bootstrap, and React, delivering visually appealing,
+              interactive, and user-friendly applications.
             </p>
           </div>
 
