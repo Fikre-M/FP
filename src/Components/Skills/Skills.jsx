@@ -51,7 +51,9 @@ export default function Skills() {
             <FaPython className="text-yellow-400 text-5xl mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Python</h3>
             <p className="text-gray-300 text-center">
-              Scripting, automation, and AI with Python.
+              Proficient in managing data with MySQL (relational databases) and
+              MongoDB (NoSQL databases), leveraging structured and flexible
+              schema designs for efficient data storage and retrieval.
             </p>
           </div>
           {/* Skill 4 */}
