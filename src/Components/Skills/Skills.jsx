@@ -38,7 +38,9 @@ export default function Skills() {
             <FaNodeJs className="text-green-400 text-5xl mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Node.js</h3>
             <p className="text-gray-300 text-center">
-              Backend APIs and real-time apps with Node.js.
+              Expertise in Node.js and Express.js for building scalable
+              server-side applications, leveraging non-blocking I/O and
+              streamlined API development.
             </p>
           </div>
           {/* Skill 3 */}
