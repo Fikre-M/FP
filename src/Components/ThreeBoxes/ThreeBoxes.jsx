@@ -120,7 +120,7 @@ export default function ThreeBoxes() {
       </h2>
 
       {/* Main container */}
-      <div className="bg-gray-700 rounded-xl shadow-2xl p-8 w-full max-w-5xl mx-auto">
+      <div className="bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-5xl mx-auto">
         {/* About Section */}
         <div className="w-full flex flex-col md:flex-row items-center md:items-stretch min-h-[400px]">
           {/* Image on the left, centered on mobile */}
