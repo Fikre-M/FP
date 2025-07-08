@@ -8,6 +8,7 @@ import ThreeBoxes from './Components/ThreeBoxes/ThreeBoxes';
 import Boxes from './Components/ThreeBoxesf/ThreeBoxesf';
 import Projects from './Components/Projects/Projects';
 import ContactSection from './Components/ContactSection/ContactSection';
+import Skills from './Components/Skills/Skills';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <ThreeBoxes />
       {/* <Boxes /> */}
+      < Skills />
       <Projects />
       <ContactSection />
       <Footer />
