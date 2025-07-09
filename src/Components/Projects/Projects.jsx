@@ -89,7 +89,7 @@ function useImage(src) {
     export default function Projects() {
     return (
       <>
-        <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full">
+        <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full mt-10">
           My Projects
           <span className="block mx-auto mt-3 h-1 w-24 bg-blue-500 rounded"></span>
         </h2>

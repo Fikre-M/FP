@@ -6,7 +6,7 @@ export default function ThreeBoxes() {
     <>
       <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full">
         About
-        <span className="block mx-auto mt-3 h-1 w-24 bg-blue-500 rounded"></span>
+        <span className="block mx-auto mt-3 h-1 w-24 bg-blue-700 rounded"></span>
       </h2>
 
       {/* Main container */}
