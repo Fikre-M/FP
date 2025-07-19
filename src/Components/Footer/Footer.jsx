@@ -1,52 +1,76 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import Logo from "../Logo/Logo";
 
-export default function Footer() {
-  return (
-    <footer className="bg-#141F2E text-white py-8">
-      <div className="container mx-auto px-4 flex flex-col items-center">
-        {/* Logo at top center */}
-        {/* <div className="text-2xl font-bold text-blue-600 mb-6">
-          <Link to="/">azAge</Link>
-        </div> */}
+// Section IDs you will use in the page below
+const navLinks = [
+  { label: "Home", id: "home" },
+  { label: "Skills", id: "skills" },
+  { label: "Projects", id: "projects" },
+  { label: "Contact", id: "contact" },
+];
 
-        <Link to="/">
-          <div className="text-white dark:text-white w-48">
+export default function Footer() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Footer className="bg-[#141F2E] shadow-md mb-4">
+      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="#home">
+          <div className="text-white w-48">
             <Logo />
           </div>
-        </Link>
+        </a>
 
-        {/* Optional content below logo */}
-        <p className="text-center text-gray-600 max-w-md mb-8">
-          {/* Your content here */}
-        </p>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-8 text-white text-lg font-medium">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a href={`#${link.id}`} className="hover:text-blue-600">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-        {/* Navigation links */}
-        <nav>
-          <ul className="flex space-x-12 text-white-700 text-lg font-medium">
-            <li>
-              <Link to="/" className="hover:text-blue-600">
-                Home
-              </Link>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {/* ...svg here... */}
+          {/* (Unchanged from your version) */}
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path /* X icon */ /* ...snip... */ />
+            ) : (
+              <path /* Hamburger icon */ /* ...snip... */ />
+            )}
+          </svg>
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <ul className="md:hidden bg-white px-4 pb-4 space-y-2 shadow-md">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                className="block py-2 text-gray-700 hover:text-blue-600"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </a>
             </li>
-            <li>
-              <Link to="/about" className="hover:text-blue-600">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/works" className="hover:text-blue-600">
-                Works
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="hover:text-blue-600">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </footer>
+          ))}
+        </ul>
+      )}
+    </Footer>
   );
 }
