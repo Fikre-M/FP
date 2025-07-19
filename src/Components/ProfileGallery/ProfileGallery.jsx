@@ -3,28 +3,28 @@ import React from "react";
 // DATA: replace img paths and profile links as needed
 const profiles = [
   {
-    img: "/img1.jpg",
+    img: "../../../images/evangadi_forum.jpg",
     name: "Evangadi Forum",
     desc: "A responsive question and answer forum application built with Vite React and Node.js, featuring a MySQL database. This project provides a platform for users to engage in discussions and share ideas, showcasing a clean and intuitive design.",
     github: "https://github.com/janedev",
     linkedin: "https://linkedin.com/in/janedev",
   },
   {
-    img: "/img2.jpg",
+    img: "../../../images/apple_bootstrap.jpg",
     name: "Apple Clone",
     desc: "A responsive Apple website clone built with Vite React and Node.js, featuring a MySQL database. This project showcases a sleek and modern interface, mirroring Apple's aesthetic.",
     github: "https://github.com/johneng",
     linkedin: "https://linkedin.com/in/johneng",
   },
   {
-    img: "/img3.jpg",
+    img: "../../../images/amazon.jpg",
     name: "Amazone Clone",
     desc: "A responsive Amazon website clone created with Vite React and Node.js, utilizing a firebase database. This project demonstrates a robust e-commerce platform with a user-friendly interface.",
     github: "https://github.com/saracreate",
     linkedin: "https://linkedin.com/in/saracreate",
   },
   {
-    img: "/img4.jpg",
+    img: "../../../images/netflix.jpg",
     name: "Netflex Clone",
     desc: "A responsive Netflix website clone developed using Vite React and Node.js. This project replicates the popular streaming service's user interface and experience.",
     github: "https://github.com/alexlogic",
