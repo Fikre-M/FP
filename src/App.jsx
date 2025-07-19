@@ -9,6 +9,7 @@ import Boxes from './Components/ThreeBoxesf/ThreeBoxesf';
 import Projects from './Components/Projects/Projects';
 import ContactSection from './Components/ContactSection/ContactSection';
 import Skills from './Components/Skills/Skills';
+import ProfileGallery from './Components/ProfileGallery/ProfileGallery';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/* <Boxes /> */}
       < Skills />
       <Projects />
+      <ProfileGallery />
       <ContactSection />
       <Footer />
     </>
