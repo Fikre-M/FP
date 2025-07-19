@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import ThreeBoxes from "./Components/ThreeBoxes/ThreeBoxes";
@@ -7,7 +9,21 @@ import ContactSection from "./Components/ContactSection/ContactSection";
 import Skills from "./Components/Skills/Skills";
 import ProfileGallery from "./Components/ProfileGallery/ProfileGallery";
 
+
 function App() {
+  useEffect(() => {
+    // Remove the hash from the URL (if present)
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+    // Scroll to the very top
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header />
