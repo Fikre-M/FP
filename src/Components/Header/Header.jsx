@@ -12,7 +12,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-[#141F2E] shadow-md mb-4">
+    <header className="sticky top-0 bg-[#141F2E] shadow-md mb-4 z-50">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home">
@@ -67,12 +67,12 @@ export default function Header() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <ul className="md:hidden bg-white px-4 pb-4 space-y-2 shadow-md">
+        <ul className="md:hidden bg-blue-300 px-4 pb-4 space-y-2 shadow-md">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className="block py-2 text-gray-700 hover:text-blue-600"
+                className="block py-2 text-gray-100 hover:text-blue-600"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
