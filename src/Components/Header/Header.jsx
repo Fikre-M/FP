@@ -16,7 +16,7 @@ export default function Header() {
     <header className="bg-[#141F2E] shadow-md mb-4">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
 
-        <a href="#home">
+        <a href="#home ">
           <div className="text-white w-48">
             <Logo />
           </div>
