@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import se2Image from "../../assets/fff.jpg";
+import CirtfImage from "../../assets/fmCirtf.jpg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
 
 export default function About() {
   return (
@@ -54,10 +58,8 @@ export default function About() {
                 </ul>
               </div>
               {/* Education */}
-              <div
-                className="flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
-              >
-              {/* <div
+              <div className="flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+                {/* <div
                 className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
                   shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
               > */}
@@ -108,11 +110,36 @@ export default function About() {
                 </p>
               </div>
               {/* Credentials */}
+              {/* <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  Credentials
+                </h3>
+                <p className="text-gray-300 text-center">Certifications</p>
+                <img
+                  src={CirtfImage}
+                  alt="Fikre"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div> */}
+
               <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
                 <p className="text-gray-300 text-center">Certifications</p>
+                <Zoom>
+                  <img
+                    src={CirtfImage}
+                    alt="Fikre"
+                    className="w-full h-full object-cover rounded-full"
+                    style={{
+                      maxWidth: "200px",
+                      maxHeight: "200px",
+                      borderRadius: "1rem",
+                      cursor: "zoom-in",
+                    }}
+                  />
+                </Zoom>
               </div>
             </div>
           </div>
