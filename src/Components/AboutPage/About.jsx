@@ -68,7 +68,7 @@ export default function About() {
                 </h3>
                 <ul className="text-gray-300 list-disc list-inside space-y-2">
                   <li>M.Sc. in Paleoanthropolgy, Addis Ababa University</li>
-                  <li>B.A. in History, Dire Dawa University</li>
+                  <li>B.A. in History & Heritage Mgt, Dire Dawa University</li>
                 </ul>
               </div>
             </div>
