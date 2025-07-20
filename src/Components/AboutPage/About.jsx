@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import se2Image from "../../assets/se2.jpg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-export default function ThreeBoxes() {
+export default function About() {
   return (
     <>
       <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full">
@@ -40,7 +40,7 @@ export default function ThreeBoxes() {
               {/* Experience */}
               <div
                 className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
-                 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
+                  shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
               >
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Experience
@@ -53,7 +53,7 @@ export default function ThreeBoxes() {
               {/* Education */}
               <div
                 className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
-                 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
+                  shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
               >
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Education
