@@ -39,7 +39,7 @@ export default function About() {
             <div className="w-full flex flex-col md:flex-row gap-6">
               {/* Experience */}
               <div
-                className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
+                className="flex-1 bg-gray-700 rounded-lg p-6 
                   shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
               >
                 <h3 className="text-xl font-semibold text-white mb-2">
@@ -55,9 +55,12 @@ export default function About() {
               </div>
               {/* Education */}
               <div
+                className="flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
+              >
+              {/* <div
                 className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
                   shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
-              >
+              > */}
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Education
                 </h3>
@@ -71,7 +74,7 @@ export default function About() {
             {/* Social, Let's Work Together, Credentials Row -- now all here and equal sizing */}
             <div className="w-full flex flex-col md:flex-row gap-6 mt-8">
               {/* Social (with icons) */}
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-4">
                   Social
                 </h3>
@@ -95,7 +98,7 @@ export default function About() {
                 </div>
               </div>
               {/* Let's Work Together */}
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Let's Work Together
                 </h3>
@@ -105,7 +108,7 @@ export default function About() {
                 </p>
               </div>
               {/* Credentials */}
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
