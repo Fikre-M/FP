@@ -35,7 +35,7 @@ function App() {
           <Skills />
         </section>
         <section id="projects">
-          <Projects />
+          {/* <Projects /> */}
           <ProfileGallery />
         </section>
         <section id="contact">
