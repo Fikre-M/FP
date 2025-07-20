@@ -1,13 +1,10 @@
 import { useEffect } from "react";
-
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import ThreeBoxes from "./Components/ThreeBoxes/ThreeBoxes";
-import Boxes from "./Components/ThreeBoxesf/ThreeBoxesf";
-import Projects from "./Components/Projects/Projects";
+import About from "./Components/AboutPage/About";
 import ContactSection from "./Components/ContactSection/ContactSection";
 import Skills from "./Components/Skills/Skills";
-import ProfileGallery from "./Components/ProfileGallery/ProfileGallery";
+import ProjectGallery from "./Components/ProjectGallery/ProjectGallery";
 
 
 function App() {
@@ -29,14 +26,13 @@ function App() {
       <Header />
       <main>
         <section id="home">
-          <ThreeBoxes />
+          <About />
         </section>
         <section id="skills">
           <Skills />
         </section>
         <section id="projects">
-          {/* <Projects /> */}
-          <ProfileGallery />
+          <ProjectGallery />
         </section>
         <section id="contact">
           <ContactSection />
