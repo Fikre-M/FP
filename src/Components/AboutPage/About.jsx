@@ -47,7 +47,7 @@ export default function ThreeBoxes() {
                 </h3>
                 <ul className="text-gray-300 list-disc list-inside space-y-2">
                   <li>Frontend Developer at Evangadi Bootcamp</li>
-                  <li>Teaching and Research (2017–2018)</li>
+                  <li>Teaching and Research (2013–2018)</li>
                 </ul>
               </div>
               {/* Education */}
@@ -68,7 +68,7 @@ export default function ThreeBoxes() {
             {/* Social, Let's Work Together, Credentials Row -- now all here and equal sizing */}
             <div className="w-full flex flex-col md:flex-row gap-6 mt-8">
               {/* Social (with icons) */}
-              <div className="flex-1 min-w-[180px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-4">
                   Social
                 </h3>
@@ -92,23 +92,22 @@ export default function ThreeBoxes() {
                 </div>
               </div>
               {/* Let's Work Together */}
-              <div className="flex-1 min-w-[180px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Let's Work Together
                 </h3>
-                <p className="text-gray-300 text-center">
+                <p className="text-gray-300 text-left">
                   Interested in collaborating? Reach out to discuss your project
                   or idea!
                 </p>
               </div>
               {/* Credentials */}
-              <div className="flex-1 min-w-[180px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg cursor-pointer">
+              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center border-4 border-double border-blue-500 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
                 <p className="text-gray-300 text-center">
-                  View certifications, awards, and other professional
-                  credentials here.
+                  Certifications
                 </p>
               </div>
             </div>
