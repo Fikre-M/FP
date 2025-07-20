@@ -31,14 +31,14 @@ const profiles = [
     linkedin: "https://linkedin.com/in/alexlogic",
   },
   {
-    img: "/img5.jpg",
+    img: "../../../images/log.png",
     name: "My Portfolio",
     desc: "UI/UX designer blending artistry with usability and code.",
     github: "https://github.com/monaux",
     linkedin: "https://linkedin.com/in/monaux",
   },
   {
-    img: "/img6.jpg",
+    img: "../../../images/clock.png",
     name: "Digital Clock App",
     desc: "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
     github: "https://github.com/lukescript",
