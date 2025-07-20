@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import se2Image from "../../assets/se2.jpg";
+import se2Image from "../../assets/fff.jpg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function About() {
@@ -46,7 +46,10 @@ export default function About() {
                   Experience
                 </h3>
                 <ul className="text-gray-300 list-disc list-inside space-y-2">
-                  <li>Frontend Developer at Evangadi Bootcamp</li>
+                  <li>
+                    Frontend Developer at Evangadi Bootcamp. For more experianse
+                    see the project section
+                  </li>
                   <li>Teaching and Research (2013–2018)</li>
                 </ul>
               </div>
@@ -74,7 +77,7 @@ export default function About() {
                 </h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com/"
+                    href="https://github.com/Fikre-M"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 text-2xl"
@@ -82,7 +85,7 @@ export default function About() {
                     <FaGithub />
                   </a>
                   <a
-                    href="https://linkedin.com/"
+                    href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 text-2xl"
@@ -106,9 +109,7 @@ export default function About() {
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
-                <p className="text-gray-300 text-center">
-                  Certifications
-                </p>
+                <p className="text-gray-300 text-center">Certifications</p>
               </div>
             </div>
           </div>

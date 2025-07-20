@@ -63,7 +63,7 @@ export default function ContactSection() {
           <div className="flex gap-6 justify-center">
             {/* GitHub */}
             <a
-              href="https://github.com/"
+              href="https://github.com/Fikre-M"
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"
@@ -76,7 +76,7 @@ export default function ContactSection() {
 
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/"
+              href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
               target="_blank"
               rel="noopener noreferrer"
               title="LinkedIn"
