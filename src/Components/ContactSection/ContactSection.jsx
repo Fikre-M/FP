@@ -57,7 +57,7 @@ export default function ContactSection() {
           <p className="text-gray-300 mb-4 text-center">
             Phone:{" "}
             <a href="mailto:your@email.com" className="underline">
-              1234 567 897
+              +1 332-235-2825
             </a>
           </p>
           <div className="flex gap-6 justify-center">
