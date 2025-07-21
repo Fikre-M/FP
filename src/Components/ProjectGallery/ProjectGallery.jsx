@@ -33,7 +33,7 @@ const profiles = [
   {
     img: "../../../images/log_resized.jpg",
     name: "My Portfolio",
-    desc: "I have developed a personal portfolio website using Vite and React to create a fast, modern, and responsive showcase for my projects and skills. The application is designed with a clean user interface to highlight professional highlights and technical expertise.",
+    desc: "I built a personal portfolio website using Vite, React, and Tailwind CSS to deliver a fast, modern, and responsive platform that showcases my projects and skills. The site features a clean user interface designed to highlight my professional experience and technical expertise.",
     github: "https://github.com/Fikre-M/FP",
     linkedin: "https://www.linkedin.com/in/fikremariam-kassa-28916062/",
   },

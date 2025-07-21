@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import se2Image from "../../assets/fff.jpg";
 import CirtfImage from "../../assets/fmCirtf.jpg";
+import NewImage from "../../assets/wes.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
-
 
 export default function About() {
   return (
@@ -14,10 +14,10 @@ export default function About() {
         <span className="block mx-auto mt-3 h-1 w-24 bg-blue-700 rounded"></span>
       </h2>
 
-      {/* Two column responsive layout */}
+      {/* Two-column responsive layout */}
       <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto">
         {/* LEFT: Image + About text */}
-        <div className="md:w-5/12 w-full flex flex-col items-start md:items-start justify-start md:pr-8 mb-8 md:mb-0">
+        <div className="md:w-5/12 w-full flex flex-col items-start justify-start md:pr-8 mb-8 md:mb-0">
           <div className="rounded-full border-4 border-double border-blue-500 w-60 h-60 md:w-72 md:h-72 overflow-hidden shadow-lg mb-6 mx-auto md:mx-0">
             <img
               src={se2Image}
@@ -36,47 +36,42 @@ export default function About() {
           </p>
         </div>
 
-        {/* RIGHT: Main content container – all sections inside */}
+        {/* RIGHT: Content containers */}
         <div className="md:w-7/12 w-full">
           <div className="bg-gray-800 rounded-xl shadow-2xl p-8 h-full w-full flex flex-col justify-between">
             {/* Experience and Education Row */}
             <div className="w-full flex flex-col md:flex-row gap-6">
               {/* Experience */}
-              <div
-                className="flex-1 bg-gray-700 rounded-lg p-6 
-                  shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
-              >
+              <div className="flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Experience
                 </h3>
                 <ul className="text-gray-300 list-disc list-inside space-y-2">
                   <li>
-                    Frontend Developer at Evangadi Bootcamp. For more experianse
-                    see the project section
+                    Frontend Developer at Evangadi Bootcamp. For more
+                    experience, see the project section.
                   </li>
                   <li>Teaching and Research (2013–2018)</li>
                 </ul>
               </div>
               {/* Education */}
               <div className="flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
-                {/* <div
-                className="flex-1 bg-gray-700 rounded-lg p-6 border-4 border-double border-blue-500
-                  shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer"
-              > */}
                 <h3 className="text-xl font-semibold text-white mb-2">
                   Education
                 </h3>
                 <ul className="text-gray-300 list-disc list-inside space-y-2">
-                  <li>M.Sc. in Paleoanthropolgy, Addis Ababa University</li>
-                  <li>B.A. in History & Heritage Mgt, Dire Dawa University</li>
+                  <li>M.Sc. in Paleoanthropology, Addis Ababa University</li>
+                  <li>
+                    B.A. in History & Heritage Management, Dire Dawa University
+                  </li>
                 </ul>
               </div>
             </div>
 
-            {/* Social, Let's Work Together, Credentials Row -- now all here and equal sizing */}
+            {/* Bottom Row: Social | Let's Work Together | Credentials */}
             <div className="w-full flex flex-col md:flex-row gap-6 mt-8">
-              {/* Social (with icons) */}
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              {/* Social */}
+              <div className="flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-4">
                   Social
                 </h3>
@@ -100,46 +95,45 @@ export default function About() {
                 </div>
               </div>
               {/* Let's Work Together */}
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              <div className="flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Let's Work Together
                 </h3>
-                <p className="text-gray-300 text-left">
+                <p className="text-gray-300 text-center">
                   Interested in collaborating? Reach out to discuss your project
                   or idea!
                 </p>
               </div>
               {/* Credentials */}
-              {/* <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
+              <div className="flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
                 <p className="text-gray-300 text-center">Certifications</p>
-                <img
-                  src={CirtfImage}
-                  alt="Fikre"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div> */}
-
-              <div className="flex-1 min-w-[170px] bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer">
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Credentials
-                </h3>
-                <p className="text-gray-300 text-center">Certifications</p>
-                <Zoom>
-                  <img
-                    src={CirtfImage}
-                    alt="Fikre"
-                    className="w-full h-full object-cover rounded-full"
-                    style={{
-                      maxWidth: "200px",
-                      maxHeight: "200px",
-                      borderRadius: "1rem",
-                      cursor: "zoom-in",
-                    }}
-                  />
-                </Zoom>
+                <div className="flex gap-4 mt-4">
+                  <Zoom>
+                    <img
+                      src={CirtfImage}
+                      alt="Certification 1"
+                      className="w-[100px] h-[100px] sm:w-[80px] sm:h-[80px] md:w-[120px] md:h-[120px] object-cover rounded-full"
+                      style={{
+                        borderRadius: "1rem",
+                        cursor: "zoom-in",
+                      }}
+                    />
+                  </Zoom>
+                  <Zoom>
+                    <img
+                      src={NewImage}
+                      alt="New Credential"
+                      className="w-[100px] h-[100px] sm:w-[80px] sm:h-[80px] md:w-[120px] md:h-[120px] object-cover rounded-full"
+                      style={{
+                        borderRadius: "1rem",
+                        cursor: "zoom-in",
+                      }}
+                    />
+                  </Zoom>
+                </div>
               </div>
             </div>
           </div>
