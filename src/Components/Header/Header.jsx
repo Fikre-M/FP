@@ -66,6 +66,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-[#141F2E] shadow-md mb-4 z-50">
+    {/* <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50"> */}
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" onClick={(e) => handleNavClick(e, "home")}>
