@@ -109,7 +109,7 @@ export default function About() {
                 <h3 className="text-lg font-semibold text-white mb-2">
                   Credentials
                 </h3>
-                <p className="text-gray-300 text-center">Certifications</p>
+                {/* <p className="text-gray-300 text-center">Certifications</p> */}
                 <div className="flex gap-4 mt-4">
                   <Zoom>
                     <img

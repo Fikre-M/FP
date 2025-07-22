@@ -67,7 +67,7 @@ export default function Header() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <ul className="md:hidden bg-blue-300 px-4 pb-4 space-y-2 shadow-md">
+        <ul className="md:hidden bg-gray-700 px-4 pb-4 space-y-2 shadow-md">
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
