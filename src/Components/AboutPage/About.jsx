@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import se2Image from "../../assets/fff.jpg";
+import se2Image from "../../assets/grad.jpg";
 import CirtfImage from "../../assets/fmCirtf.jpg";
 import NewImage from "../../assets/wes.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -116,7 +116,8 @@ export default function About() {
             <img
               src={se2Image}
               alt="Fikre"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-med object-cover rounded-full"
+              style={{ objectPosition: "center 20%" }}
             />
           </div>
           <p className="text-gray-200 text-lg mt-2 text-left max-w-md">
@@ -127,13 +128,12 @@ export default function About() {
             development. In my free time, I enjoy connecting with nature,
             traveling, capturing moments through photography, exploring music,
             and sampling new cuisines.  */}
-            
-            Hi! I'm Fikremariam, originally from Ethiopia, now based in New York. 
-            With a background in teaching
-            and research, I've found my calling as a full-stack developer,
-            leveraging my passion for IT and web development. When I'm not
-            coding, you can find me outdoors, traveling, snapping photos,
-            jamming to music, or trying out new flavors.
+            Hi! I'm Fikremariam, originally from Ethiopia, now based in New
+            York. With a background in teaching and research, I've found my
+            calling as a full-stack developer, leveraging my passion for IT and
+            web development. When I'm not coding, you can find me outdoors,
+            traveling, snapping photos, jamming to music, or trying out new
+            flavors.
           </p>
         </div>
 
