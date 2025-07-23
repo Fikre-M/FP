@@ -17,7 +17,7 @@ export default function About() {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     const aboutSection = document.getElementById("about");
@@ -97,160 +97,188 @@ export default function About() {
   }, []);
 
   return (
-    <div
+    <section
       id="about"
-      className={`transition-opacity duration-1000 ${
+      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-80"
       }`}
+      style={{ scrollMarginTop: "80px" }} // Offset for fixed header
     >
-      <h2 className="text-center text-4xl font-bold mb-12 relative text-white w-full">
-        About
-        <span className="block mx-auto mt-3 h-1 w-24 bg-blue-700 rounded"></span>
-      </h2>
-
-      {/* Two-column responsive layout */}
-      <div className="flex flex-col md:flex-row w-full max-w-5xl mx-auto">
-        {/* LEFT: Image + About text */}
-        <div className="md:w-5/12 w-full flex flex-col items-start justify-start md:pr-8 mb-8 md:mb-0">
-          <div className="rounded-full border-4 border-double border-blue-500 w-60 h-60 md:w-72 md:h-72 overflow-hidden shadow-lg mb-6 mx-auto md:mx-0">
-            <img
-              src={se2Image}
-              alt="Fikre"
-              className="w-full h-full object-cover rounded-full"
-              style={{ objectPosition: "center 20%" }}
-            />
-          </div>
-          <p className="text-gray-200 text-lg mt-2 text-left max-w-md">
-            {/* Hello! My name is Fikremariam but you can call me FIKRE. I'm
-            originally from Ethiopia and currently reside in New York, US. As a
-            full-stack developer with a unique background in teaching and
-            research, I've developed a strong passion for IT and web
-            development. In my free time, I enjoy connecting with nature,
-            traveling, capturing moments through photography, exploring music,
-            and sampling new cuisines.  */}
-            Hi! I'm Fikremariam, originally from Ethiopia, now based in New
-            York. With a background in teaching and research, I've found my
-            calling as a full-stack developer, leveraging my passion for IT and
-            web development. When I'm not coding, you can find me outdoors,
-            traveling, snapping photos, jamming to music, or trying out new
-            flavors.
-          </p>
+      <div className="max-w-7xl mx-auto">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+            About
+          </h2>
+          <div className="mx-auto h-1 w-16 sm:w-24 bg-blue-700 rounded"></div>
         </div>
 
-        {/* RIGHT: Content containers */}
-        <div className="md:w-7/12 w-full">
-          <div className="bg-gray-800 rounded-xl shadow-2xl p-8 h-full w-full flex flex-col justify-between">
-            {/* Experience and Education Row */}
-            <div className="w-full flex flex-col md:flex-row gap-6">
-              {/* Experience */}
-              <div
-                className={`flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer ${
-                  hoveredCard === "experience" ? "ring-2 ring-blue-500" : ""
-                }`}
-                onMouseEnter={() => handleCardHover("experience")}
-                onMouseLeave={handleCardLeave}
-              >
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  Experience
-                </h3>
-                <ul className="text-gray-300 list-disc list-inside space-y-2">
-                  {experienceItems.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+        {/* Main Content Container */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+          {/* LEFT COLUMN: Profile Image + Bio */}
+          <div className="w-full lg:w-5/12 flex flex-col items-center lg:items-start">
+            {/* Profile Image */}
+            <div className="relative mb-6">
+              <div className="rounded-full border-4 border-double border-blue-500 w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 overflow-hidden shadow-2xl">
+                <img
+                  src={se2Image}
+                  alt="Fikre"
+                  className="w-full h-full object-cover rounded-full transition-transform duration-300 hover:scale-105"
+                  style={{ objectPosition: "center 20%" }}
+                />
               </div>
-              {/* Education */}
-              <div
-                className={`flex-1 bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer ${
-                  hoveredCard === "education" ? "ring-2 ring-blue-500" : ""
-                }`}
-                onMouseEnter={() => handleCardHover("education")}
-                onMouseLeave={handleCardLeave}
-              >
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  Education
-                </h3>
-                <ul className="text-gray-300 list-disc list-inside space-y-2">
-                  {educationItems.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              {/* Decorative element */}
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-600 rounded-full opacity-80"></div>
             </div>
 
-            {/* Bottom Row: Social | Let's Work Together | Credentials */}
-            <div className="w-full flex flex-col md:flex-row gap-6 mt-8">
-              {/* Social */}
-              <div
-                className={`flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer ${
-                  hoveredCard === "social" ? "ring-2 ring-blue-500" : ""
-                }`}
-                onMouseEnter={() => handleCardHover("social")}
-                onMouseLeave={handleCardLeave}
-              >
-                <h3 className="text-lg font-semibold text-white mb-4">
-                  Social
-                </h3>
-                <div className="flex space-x-4">
-                  {socialLinks.map(({ id, href, icon: Icon, label }) => (
-                    <button
-                      key={id}
-                      onClick={() => handleSocialClick(href, label)}
-                      className="text-blue-500 hover:text-blue-700 text-2xl transition-colors duration-200"
-                      aria-label={label}
-                    >
-                      <Icon />
-                    </button>
-                  ))}
+            {/* Bio Text */}
+            <div className="max-w-md text-center lg:text-left">
+              <p className="text-gray-200 text-base sm:text-lg leading-relaxed">
+                Hi! I'm Fikremariam, originally from Ethiopia, now based in New
+                York. With a background in teaching and research, I've found my
+                calling as a full-stack developer, leveraging my passion for IT
+                and web development. When I'm not coding, you can find me
+                outdoors, traveling, snapping photos, jamming to music, or
+                trying out new flavors.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Info Cards */}
+          <div className="w-full lg:w-7/12">
+            <div className="bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-700">
+              {/* Top Row: Experience and Education */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {/* Experience Card */}
+                <div
+                  className={`bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 ${
+                    hoveredCard === "experience"
+                      ? "ring-2 ring-blue-500 shadow-blue-500/25"
+                      : ""
+                  }`}
+                  onMouseEnter={() => handleCardHover("experience")}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                    Experience
+                  </h3>
+                  <ul className="text-gray-300 space-y-3">
+                    {experienceItems.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-400 mr-2 mt-1.5">•</span>
+                        <span className="text-sm sm:text-base">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Education Card */}
+                <div
+                  className={`bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 ${
+                    hoveredCard === "education"
+                      ? "ring-2 ring-blue-500 shadow-blue-500/25"
+                      : ""
+                  }`}
+                  onMouseEnter={() => handleCardHover("education")}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                    Education
+                  </h3>
+                  <ul className="text-gray-300 space-y-3">
+                    {educationItems.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-green-400 mr-2 mt-1.5">•</span>
+                        <span className="text-sm sm:text-base">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              {/* Let's Work Together */}
-              <div
-                className={`flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer ${
-                  hoveredCard === "collaborate" ? "ring-2 ring-blue-500" : ""
-                }`}
-                onMouseEnter={() => handleCardHover("collaborate")}
-                onMouseLeave={handleCardLeave}
-              >
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Let's Work Together
-                </h3>
-                <p className="text-gray-300 text-center">
-                  Interested in collaborating? Reach out to discuss your project
-                  or idea!
-                </p>
-              </div>
-              {/* Credentials */}
-              <div
-                className={`flex-1 bg-gray-700 rounded-lg p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer ${
-                  hoveredCard === "credentials" ? "ring-2 ring-blue-500" : ""
-                }`}
-                onMouseEnter={() => handleCardHover("credentials")}
-                onMouseLeave={handleCardLeave}
-              >
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Credentials
-                </h3>
-                <div className="flex gap-4 mt-4">
-                  {credentials.map(({ id, src, alt }) => (
-                    <Zoom key={id}>
-                      <img
-                        src={src}
-                        alt={alt}
-                        className="w-[100px] h-[100px] sm:w-[80px] sm:h-[80px] md:w-[120px] md:h-[120px] object-cover rounded-full"
-                        style={{
-                          borderRadius: "1rem",
-                          cursor: "zoom-in",
-                        }}
-                      />
-                    </Zoom>
-                  ))}
+
+              {/* Bottom Row: Social, Collaboration, Credentials */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Social Card */}
+                <div
+                  className={`bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 ${
+                    hoveredCard === "social"
+                      ? "ring-2 ring-blue-500 shadow-blue-500/25"
+                      : ""
+                  }`}
+                  onMouseEnter={() => handleCardHover("social")}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <h3 className="text-lg font-semibold text-white mb-4">
+                    Connect
+                  </h3>
+                  <div className="flex space-x-6">
+                    {socialLinks.map(({ id, href, icon: Icon, label }) => (
+                      <button
+                        key={id}
+                        onClick={() => handleSocialClick(href, label)}
+                        className="text-blue-400 hover:text-blue-300 text-2xl sm:text-3xl transition-all duration-200 hover:scale-110"
+                        aria-label={label}
+                      >
+                        <Icon />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Collaboration Card */}
+                <div
+                  className={`bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 ${
+                    hoveredCard === "collaborate"
+                      ? "ring-2 ring-blue-500 shadow-blue-500/25"
+                      : ""
+                  }`}
+                  onMouseEnter={() => handleCardHover("collaborate")}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <h3 className="text-lg font-semibold text-white mb-3 text-center">
+                    Let's Work Together
+                  </h3>
+                  <p className="text-gray-300 text-center text-sm leading-relaxed">
+                    Interested in collaborating? Reach out to discuss your
+                    project or idea!
+                  </p>
+                </div>
+
+                {/* Credentials Card */}
+                <div
+                  className={`bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 sm:col-span-2 lg:col-span-1 ${
+                    hoveredCard === "credentials"
+                      ? "ring-2 ring-blue-500 shadow-blue-500/25"
+                      : ""
+                  }`}
+                  onMouseEnter={() => handleCardHover("credentials")}
+                  onMouseLeave={handleCardLeave}
+                >
+                  <h3 className="text-lg font-semibold text-white mb-4">
+                    Credentials
+                  </h3>
+                  <div className="flex gap-3">
+                    {credentials.map(({ id, src, alt }) => (
+                      <Zoom key={id}>
+                        <img
+                          src={src}
+                          alt={alt}
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+                          style={{
+                            cursor: "zoom-in",
+                          }}
+                        />
+                      </Zoom>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

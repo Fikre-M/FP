@@ -2,14 +2,14 @@ import { useState, useCallback, useEffect } from "react";
 import Logo from "../Logo/Logo";
 
 const navLinks = [
-  { label: "Home", id: "home" },
+  { label: "About", id: "about" }, // Changed from "About" to "about"
   { label: "Skills", id: "skills" },
   { label: "Projects", id: "projects" },
   { label: "Contact", id: "contact" },
 ];
 
 export default function Footer() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("about");
 
   // Track which section is currently in view
   useEffect(() => {
@@ -36,7 +36,15 @@ export default function Footer() {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Add offset for fixed header
+      const headerHeight = 80; // Adjust this value based on your header height
+      const elementPosition = element.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+
       setActiveSection(targetId);
     }
   }, []);
@@ -51,9 +59,9 @@ export default function Footer() {
       {/* Mobile: Logo centered */}
       <div className="flex md:hidden justify-center py-4">
         <a
-          href="#home"
+          href="#about"
           className="block text-white w-48"
-          onClick={(e) => handleNavClick(e, "home")}
+          onClick={(e) => handleNavClick(e, "about")}
         >
           <Logo />
         </a>
@@ -61,9 +69,9 @@ export default function Footer() {
       {/* Desktop: Logo left, nav right */}
       <nav className="container mx-auto px-4 py-4 hidden md:flex items-center justify-between">
         <a
-          href="#home"
+          href="#about"
           className="text-white w-48"
-          onClick={(e) => handleNavClick(e, "home")}
+          onClick={(e) => handleNavClick(e, "about")}
         >
           <Logo />
         </a>
@@ -72,7 +80,7 @@ export default function Footer() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                className={`hover:text-blue-600 ${
+                className={`hover:text-blue-600 transition-colors duration-200 ${
                   isActive(link.id) ? "text-blue-600" : ""
                 }`}
                 onClick={(e) => handleNavClick(e, link.id)}
