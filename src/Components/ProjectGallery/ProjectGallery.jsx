@@ -365,7 +365,7 @@ const profilesData = [
   },
   {
     id: 5,
-    img: "../../../images/fff.jpg",
+    img: "../../../images/fms.png",
     name: "My Portfolio",
     desc: "I built a personal portfolio website using Vite, React, and Tailwind CSS to deliver a fast, modern, and responsive platform that showcases my projects and skills. The site features a clean user interface designed to highlight my professional experience and technical expertise.",
     github: "https://github.com/Fikre-M/FP",

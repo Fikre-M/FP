@@ -2,7 +2,8 @@ import { useState, useCallback, useEffect } from "react";
 import Logo from "../Logo/Logo";
 
 const navLinks = [
-  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  // { label: "Home", id: "home" },
   { label: "Skills", id: "skills" },
   { label: "Projects", id: "projects" },
   { label: "Contact", id: "contact" },
@@ -10,7 +11,7 @@ const navLinks = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("About");
 
   // Track which section is currently in view
   useEffect(() => {
@@ -65,8 +66,8 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 bg-[#141F2E] shadow-md mb-4 z-50">
-    {/* <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50"> */}
+    // <header className="sticky top-0 bg-[#141F2E] shadow-md mb-4 z-50">
+     <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" onClick={(e) => handleNavClick(e, "home")}>

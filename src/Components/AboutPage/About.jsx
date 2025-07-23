@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import se2Image from "../../assets/grad.jpg";
+import se2Image from "../../assets/f3.jpg";
 import CirtfImage from "../../assets/fmCirtf.jpg";
 import NewImage from "../../assets/wes.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -116,7 +116,7 @@ export default function About() {
             <img
               src={se2Image}
               alt="Fikre"
-              className="w-full h-med object-cover rounded-full"
+              className="w-full h-full object-cover rounded-full"
               style={{ objectPosition: "center 20%" }}
             />
           </div>
