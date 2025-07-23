@@ -369,7 +369,7 @@ const profilesData = [
     name: "My Portfolio",
     desc: "I built a personal portfolio website using Vite, React, and Tailwind CSS to deliver a fast, modern, and responsive platform that showcases my projects and skills. The site features a clean user interface designed to highlight my professional experience and technical expertise.",
     github: "https://github.com/Fikre-M/FP",
-    linkedin: "https://portfolio.rohaazage.com/",
+    linkedin: "https://www.linkedin.com/in/fikremariam-kassa-28916062/",
     category: "portfolio",
   },
   {
