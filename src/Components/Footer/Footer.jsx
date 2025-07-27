@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import Logo from "../Logo/Logo";
 
 const navLinks = [
@@ -56,25 +57,74 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#141F2E] shadow-md mt-12">
-      {/* Mobile: Logo centered */}
-      <div className="flex md:hidden justify-center py-4">
-        <a
-          href="#about"
-          className="block text-white w-48"
-          onClick={(e) => handleNavClick(e, "about")}
-        >
-          <Logo />
-        </a>
+      {/* Mobile: Logo slightly right of center with social icons below */}
+      <div className="flex md:hidden flex-col items-center py-4">
+        <div className="flex justify-center w-full pl-8">
+          <a
+            href="#about"
+            className="block text-white w-48 mb-4"
+            onClick={(e) => handleNavClick(e, "about")}
+          >
+            <Logo />
+          </a>
+        </div>
+
+        {/* Social Icons for Mobile */}
+        <div className="flex space-x-6 mb-4">
+          <a
+            href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-blue-600 transition-colors duration-200"
+          >
+            <FaLinkedin size={24} />
+          </a>
+          <a
+            href="https://github.com/Fikre-M"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-blue-600 transition-colors duration-200"
+          >
+            <FaGithub size={24} />
+          </a>
+        </div>
+
+        {/* Copyright for Mobile */}
+        <p className="text-white text-sm">© 2025 All rights reserved</p>
       </div>
+
       {/* Desktop: Logo left, nav right */}
       <nav className="container mx-auto px-4 py-4 hidden md:flex items-center justify-between">
-        <a
-          href="#about"
-          className="text-white w-48"
-          onClick={(e) => handleNavClick(e, "about")}
-        >
-          <Logo />
-        </a>
+        <div className="flex flex-col items-center">
+          <a
+            href="#about"
+            className="text-white w-48 mb-3"
+            onClick={(e) => handleNavClick(e, "about")}
+          >
+            <Logo />
+          </a>
+
+          {/* Social Icons for Desktop */}
+          <div className="flex space-x-4">
+            <a
+              href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-600 transition-colors duration-200"
+            >
+              <FaLinkedin size={20} />
+            </a>
+            <a
+              href="https://github.com/Fikre-M"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-600 transition-colors duration-200"
+            >
+              <FaGithub size={20} />
+            </a>
+          </div>
+        </div>
+
         <ul className="flex space-x-8 text-white text-lg font-medium">
           {navLinks.map((link) => (
             <li key={link.id}>
@@ -91,6 +141,11 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
+
+      {/* Copyright for Desktop */}
+      <div className="hidden md:block text-center text-white text-sm py-3 border-t border-gray-700">
+        © 2025 All rights reserved
+      </div>
     </footer>
   );
 }
