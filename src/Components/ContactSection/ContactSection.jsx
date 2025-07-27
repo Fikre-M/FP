@@ -111,8 +111,8 @@ export default function ContactSection() {
         <span className="block mx-auto mt-3 h-1 w-24 bg-blue-500 rounded"></span>
       </h2>
 
-      {/* Main container */}
-      <div className="bg-gray-700 rounded-xl shadow-2xl p-8 w-full max-w-5xl mx-auto flex flex-col md:flex-row">
+      {/* Main container with gradient styling like experience card */}
+      <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-600 hover:shadow-blue-500/25 p-8 w-full max-w-5xl mx-auto flex flex-col md:flex-row">
         {/* Text Section */}
         <div className="w-full md:w-1/2 flex flex-col justify-center mb-8 md:mb-0 md:mr-8">
           <h3 className="text-2xl font-semibold text-white mb-4 text-center">
@@ -237,9 +237,12 @@ export default function ContactSection() {
 
 
 
+
+
+
+
 // import React, { useRef, useEffect } from "react";
 // import emailjs from "@emailjs/browser";
-
 
 // export default function ContactSection() {
 //   const formRef = useRef(null);
@@ -369,5 +372,3 @@ export default function ContactSection() {
 //     </>
 //   );
 // }
-
-
