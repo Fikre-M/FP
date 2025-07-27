@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     // <header className="sticky top-0 bg-[#141F2E] shadow-md mb-4 z-50">
-     <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" onClick={(e) => handleNavClick(e, "home")}>
@@ -128,21 +128,74 @@ export default function Header() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <ul className="md:hidden bg-gray-700 px-4 pb-4 space-y-2 shadow-md">
-          {navLinks.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                className={`block py-2 text-gray-100 hover:text-blue-600 ${
-                  isActive(link.id) ? "text-blue-600" : ""
-                }`}
-                onClick={(e) => handleNavClick(e, link.id)}
+        <div className="md:hidden relative bg-gray-700 px-4 pb-4 shadow-md overflow-hidden">
+          {/* Animated Stars Background */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Regular Twinkling Stars */}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={`star-${i}`}
+                className="absolute text-yellow-300 opacity-60 animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  fontSize: `${8 + Math.random() * 6}px`,
+                }}
               >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+                ✦
+              </div>
+            ))}
+
+            {/* Shooting/Tailed Stars */}
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={`comet-${i}`}
+                className="absolute text-blue-300 opacity-50 animate-bounce"
+                style={{
+                  left: `${Math.random() * 80}%`,
+                  top: `${Math.random() * 80}%`,
+                  animationDelay: `${Math.random() * 4}s`,
+                  fontSize: "16px",
+                }}
+              >
+                ☄
+              </div>
+            ))}
+
+            {/* Flying Stars */}
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={`flying-${i}`}
+                className="absolute text-white opacity-40 animate-ping"
+                style={{
+                  left: `${Math.random() * 90}%`,
+                  top: `${Math.random() * 90}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              >
+                ⭐
+              </div>
+            ))}
+          </div>
+
+          {/* Navigation Menu Items */}
+          <ul className="space-y-2 relative z-10">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  className={`block py-2 text-gray-100 hover:text-blue-600 transition-colors duration-200 ${
+                    isActive(link.id) ? "text-blue-600" : ""
+                  }`}
+                  onClick={(e) => handleNavClick(e, link.id)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </header>
   );
