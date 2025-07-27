@@ -119,7 +119,7 @@ export default function Skills() {
         isVisible ? "opacity-100" : "opacity-80"
       }`}
     >
-      <h2 className="text-3xl font-bold text-white text-center mb-10 mt-10">
+      <h2 className="text-3xl font-bold text-white text-center mb-10 mt-15">
         My Skills
         <span className="block mx-auto mt-3 h-1 w-24 bg-blue-700 rounded"></span>
       </h2>
