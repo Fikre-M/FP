@@ -69,8 +69,8 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Social Icons for Mobile */}
-        <div className="flex space-x-6 mb-4">
+        {/* Social Icons for Mobile ONLY - visible on small screens, hidden on md and up */}
+        <div className="flex md:hidden space-x-6 mb-4">
           <a
             href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
             target="_blank"
@@ -93,37 +93,15 @@ export default function Footer() {
         <p className="text-white text-sm">© 2025 All rights reserved</p>
       </div>
 
-      {/* Desktop: Logo left, nav right */}
+      {/* Desktop: Logo left, nav right - NO social icons */}
       <nav className="container mx-auto px-4 py-4 hidden md:flex items-center justify-between">
-        <div className="flex flex-col items-center">
-          <a
-            href="#about"
-            className="text-white w-48 mb-3"
-            onClick={(e) => handleNavClick(e, "about")}
-          >
-            <Logo />
-          </a>
-
-          {/* Social Icons for Desktop */}
-          <div className="flex space-x-4">
-            <a
-              href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-600 transition-colors duration-200"
-            >
-              <FaLinkedin size={20} />
-            </a>
-            <a
-              href="https://github.com/Fikre-M"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-600 transition-colors duration-200"
-            >
-              <FaGithub size={20} />
-            </a>
-          </div>
-        </div>
+        <a
+          href="#about"
+          className="text-white w-48"
+          onClick={(e) => handleNavClick(e, "about")}
+        >
+          <Logo />
+        </a>
 
         <ul className="flex space-x-8 text-white text-lg font-medium">
           {navLinks.map((link) => (
