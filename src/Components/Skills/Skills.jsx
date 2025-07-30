@@ -174,8 +174,8 @@ function SkillCard({
 
   return (
     <div
-      className={`flex flex-col items-center bg-gray-700 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full transform ${
-        isHovered ? "ring-2 ring-blue-500 scale-105" : ""
+      className={`flex flex-col items-center bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 h-full transform ${
+        isHovered ? "ring-2 ring-blue-500 shadow-blue-500/25" : ""
       } ${
         isAnimated ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
