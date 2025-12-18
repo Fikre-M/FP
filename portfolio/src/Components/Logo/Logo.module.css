@@ -1,0 +1,21 @@
+/* src/Logo.css */
+.logo {
+    width: 100%;
+    height: auto;
+}
+
+.logo polygon,
+.logo line,
+.logo rect,
+.logo polyline {
+    fill: none;
+    stroke: white;
+    stroke-width: 3;
+}
+
+  /* add styling to the bar */
+.logo rect {
+    fill: white;
+}
+
+
