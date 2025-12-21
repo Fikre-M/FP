@@ -4,7 +4,6 @@ import { Code, ChevronDown, ChevronUp, Brain, Zap } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { problemSolutions } from '../../data/problemSolutions';
-import { ProblemSolution } from '../../types';
 
 const ProblemSolving: React.FC = () => {
   const [selectedProblem, setSelectedProblem] = useState<number | null>(null);

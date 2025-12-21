@@ -5,64 +5,42 @@ import {
   FaCodeBranch,
   FaDatabase,
   FaCloudUploadAlt,
+  FaMobile,
+  FaCogs,
+  FaShieldAlt,
 } from "react-icons/fa";
+import { skills as skillsData } from "../../data/skills";
+
+// Icon mapping
+const iconMap = {
+  FaLaptopCode: FaLaptopCode,
+  FaServer: FaServer,
+  FaCodeBranch: FaCodeBranch,
+  FaDatabase: FaDatabase,
+  FaCloudUploadAlt: FaCloudUploadAlt,
+  FaMobile: FaMobile,
+  FaCogs: FaCogs,
+  FaShieldAlt: FaShieldAlt,
+};
+
+const iconColors = {
+  FaLaptopCode: "text-blue-600",
+  FaServer: "text-green-400",
+  FaCodeBranch: "text-yellow-400",
+  FaDatabase: "text-purple-500",
+  FaCloudUploadAlt: "text-orange-500",
+  FaMobile: "text-pink-500",
+  FaCogs: "text-gray-500",
+  FaShieldAlt: "text-red-500",
+};
 
 export default function Skills() {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const [animatedSkills, setAnimatedSkills] = useState(new Set());
 
-  // Memoized skills data
-  const skills = useMemo(
-    () => [
-      {
-        id: "frontend",
-        icon: <FaLaptopCode className="text-blue-600 text-5xl mb-4" />,
-        title: "Front End",
-        description:
-          "Skilled in crafting engaging web experiences with HTML, CSS, JavaScript, Bootstrap, and React, delivering visually appealing, interactive, and user-friendly applications.",
-      },
-      {
-        id: "backend",
-        icon: <FaServer className="text-green-400 text-5xl mb-4" />,
-        title: "Back End",
-        description:
-          "Expertise in Node.js and Express.js for building scalable server-side applications, leveraging non-blocking I/O and streamlined API development.",
-      },
-      {
-        id: "version-control",
-        icon: <FaCodeBranch className="text-yellow-400 text-5xl mb-4" />,
-        title: "Version Control",
-        description:
-          "Skilled in using Git and GitHub for efficient version control, collaboration, and code management, leveraging local tracking, branching, and cloud-based hosting for seamless team workflow.",
-      },
-      {
-        id: "databases",
-        icon: <FaDatabase className="text-purple-500 text-5xl mb-4" />,
-        title: "Databases",
-        description:
-          "Proficient in managing data with MySQL (relational databases) and MongoDB (NoSQL databases), leveraging structured and flexible schema designs for efficient data storage and retrieval.",
-      },
-      {
-        id: "additional",
-        icon: <FaCloudUploadAlt className="text-pink-500 text-5xl mb-4" />,
-        title: "Additional Skills",
-        description: (
-          <div className="space-y-2">
-            <span className="block font-medium">Deployment:</span>
-            <span className="block">AWS, Netlify, Hostinger, Squarespace</span>
-            <span className="block font-medium">Collaboration:</span>
-            <span className="block">Slack, Alice</span>
-            <span className="block font-medium">Professional Skills:</span>
-            <span className="block">
-              Problem Solving, Communication, Project Management, Adaptability
-            </span>
-          </div>
-        ),
-      },
-    ],
-    []
-  );
+  // Use skills from data file
+  const skills = skillsData;
 
   // Track visibility for animations
   useEffect(() => {
@@ -123,10 +101,10 @@ export default function Skills() {
         My Skills
         <span className="block mx-auto mt-3 h-1 w-24 bg-blue-700 rounded"></span>
       </h2>
-      <div className="bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-5xl mx-auto mt-12">
-        {/* Responsive grid for first 4 cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {skills.slice(0, 4).map((skill, index) => (
+      <div className="bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-6xl mx-auto mt-12">
+        {/* Responsive grid for all skill cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {skills.map((skill, index) => (
             <SkillCard
               key={skill.id}
               skill={skill}
@@ -137,19 +115,6 @@ export default function Skills() {
               onClick={handleSkillClick}
             />
           ))}
-        </div>
-        {/* Centered bottom card */}
-        <div className="flex justify-center mt-8">
-          <div className="w-full sm:w-2/3 md:w-1/2">
-            <SkillCard
-              skill={skills[4]}
-              isHovered={hoveredSkill === skills[4].id}
-              isAnimated={isSkillAnimated(4)}
-              onHover={handleSkillHover}
-              onLeave={handleSkillLeave}
-              onClick={handleSkillClick}
-            />
-          </div>
         </div>
       </div>
     </div>
@@ -172,6 +137,10 @@ function SkillCard({
     onClick(skill);
   }, [skill, onClick]);
 
+  // Get the icon component and color
+  const IconComponent = iconMap[skill.icon];
+  const iconColor = iconColors[skill.icon] || "text-gray-500";
+
   return (
     <div
       className={`flex flex-col items-center bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-600 h-full transform ${
@@ -188,10 +157,29 @@ function SkillCard({
           isHovered ? "scale-110" : ""
         }`}
       >
-        {skill.icon}
+        {IconComponent && <IconComponent className={`${iconColor} text-5xl mb-4`} />}
       </div>
       <h3 className="text-xl font-semibold text-white mb-2">{skill.title}</h3>
       <div className="text-gray-300 text-center">{skill.description}</div>
+      
+      {/* Progress bar for skill level */}
+      <div className="w-full mt-4">
+        <div className="flex justify-between text-sm text-gray-400 mb-1">
+          <span>Proficiency</span>
+          <span>{skill.level}%</span>
+        </div>
+        <div className="w-full bg-gray-600 rounded-full h-2">
+          <div
+            className={`h-2 rounded-full transition-all duration-1000 ${
+              isAnimated ? 'w-full' : 'w-0'
+            }`}
+            style={{ 
+              width: isAnimated ? `${skill.level}%` : '0%',
+              background: `linear-gradient(90deg, ${iconColor.replace('text-', '#')} 0%, ${iconColor.replace('text-', '#')}80 100%)`
+            }}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 }

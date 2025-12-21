@@ -35,7 +35,7 @@ function App() {
             <SEO />
             <Header />
             <main>
-              <section id="home">
+              <section id="about">
                 <About />
               </section>
               <section id="skills">

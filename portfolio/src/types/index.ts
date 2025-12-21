@@ -12,9 +12,9 @@ export interface Project {
 
 export interface Skill {
   id: string;
-  icon: React.ReactNode;
+  icon: string;
   title: string;
-  description: string | React.ReactNode;
+  description: string;
   level: number;
 }
 
