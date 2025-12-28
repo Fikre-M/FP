@@ -12,6 +12,7 @@ import Skills from "./Components/Skills/Skills";
 import ProjectGallery from "./Components/ProjectGallery/ProjectGallery";
 import ProblemSolving from "./Components/ProblemSolving/ProblemSolving";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
+import HeroSection from "./Components/HeroSection/HeroSection";
 
 function App() {
   useEffect(() => {
@@ -35,6 +36,11 @@ function App() {
             <SEO />
             <Header />
             <main>
+
+              <section>
+                <HeroSection />
+              </section>
+              
               <section id="about">
                 <About />
               </section>
@@ -58,19 +64,19 @@ function App() {
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: '#374151',
-                  color: '#fff',
+                  background: "#374151",
+                  color: "#fff",
                 },
                 success: {
                   iconTheme: {
-                    primary: '#10B981',
-                    secondary: '#fff',
+                    primary: "#10B981",
+                    secondary: "#fff",
                   },
                 },
                 error: {
                   iconTheme: {
-                    primary: '#EF4444',
-                    secondary: '#fff',
+                    primary: "#EF4444",
+                    secondary: "#fff",
                   },
                 },
               }}
