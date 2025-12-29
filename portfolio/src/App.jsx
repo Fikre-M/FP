@@ -36,11 +36,10 @@ function App() {
             <SEO />
             <Header />
             <main>
-
-              <section>
+              <section id="HeroSection">
                 <HeroSection />
               </section>
-              
+
               <section id="about">
                 <About />
               </section>
