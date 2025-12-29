@@ -31,42 +31,32 @@ const defaultProjects: Project[] = [
   {
     id: 1,
     img: "/images/evangadi_forum.jpg",
-    name: "Evangadi Forum",
+    name: "AI Ethiopian Tour + Cultural Concierge App",
     desc: "A responsive question and answer forum application built with Vite React and Node.js, featuring a MySQL database. This project provides a platform for users to engage in discussions and share ideas, showcasing a clean and intuitive design.",
     github: "https://github.com/Fikre-M/evangadi_forum",
     website: "https://evangadiforum.knoweledagebased.com/",
     category: "forum",
-    technologies: ["React", "Node.js", "MySQL", "Vite"]
+    technologies: ["React", "Node.js", "MySQL", "Vite"],
   },
   {
     id: 2,
     img: "/images/apple_bootstrap.jpg",
-    name: "Apple Clone",
+    name: "AI Healthcare & Medical Appointment System",
     desc: "A responsive Apple website clone built with Vite React and Node.js, featuring a MySQL database. This project showcases a sleek and modern interface, mirroring Apple's aesthetic.",
     github: "https://github.com/Fikre-M/apllee-clone",
     website: "https://startling-heliotrope-e68744.netlify.app/",
     category: "clone",
-    technologies: ["React", "Node.js", "MySQL", "Bootstrap"]
+    technologies: ["React", "Node.js", "MySQL", "Bootstrap"],
   },
   {
     id: 3,
     img: "/images/amazon.jpg",
-    name: "Amazon Clone",
+    name: "AI Shelter Operations & Case Management System",
     desc: "A responsive Amazon website clone created with Vite React and Node.js, utilizing a firebase database. This project demonstrates a robust e-commerce platform with a user-friendly interface.",
     github: "https://github.com/Fikre-M/amazon_replica",
     website: "https://amazon-replica-fikre.netlify.app/",
     category: "clone",
-    technologies: ["React", "Node.js", "Firebase", "Vite"]
-  },
-  {
-    id: 4,
-    img: "/images/netflix.jpg",
-    name: "Netflix Clone",
-    desc: "A responsive Netflix website clone developed using Vite React and Node.js. This project replicates the popular streaming service's user interface and experience.",
-    github: "https://github.com/Fikre-M/Netflix",
-    website: "https://edu-react-movie-app.knoweledagebased.com/",
-    category: "clone",
-    technologies: ["React", "Node.js", "API Integration"]
+    technologies: ["React", "Node.js", "Firebase", "Vite"],
   },
   {
     id: 5,
@@ -76,7 +66,7 @@ const defaultProjects: Project[] = [
     github: "https://github.com/Fikre-M/FP",
     website: "https://www.linkedin.com/in/fikremariam-kassa-28916062/",
     category: "portfolio",
-    technologies: ["React", "Tailwind CSS", "Vite", "TypeScript"]
+    technologies: ["React", "Tailwind CSS", "Vite", "TypeScript"],
   },
   {
     id: 6,
@@ -86,8 +76,8 @@ const defaultProjects: Project[] = [
     github: "https://github.com/Fikre-M/DigitalClockApp",
     website: "https://clock.rohaazage.com/",
     category: "app",
-    technologies: ["React", "Vite", "JavaScript", "CSS"]
-  }
+    technologies: ["React", "Vite", "JavaScript", "CSS"],
+  },
 ];
 
 const SocialIcon: React.FC<{
