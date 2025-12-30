@@ -237,22 +237,16 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 transform transition-all duration-500 ease-in-out">
               <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("projects");
-                }}
+                href="/#projects"
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-2xl hover:shadow-blue-500/50 text-center"
+                aria-label="View my projects"
               >
                 View Projects
               </a>
               <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("contact");
-                }}
+                href="/#contact"
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl text-center"
+                aria-label="Contact me"
               >
                 Contact Me
               </a>
@@ -261,30 +255,30 @@ export default function HeroSection() {
             {/* Social Links */}
             <div className="flex justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/Fikre-M"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
                 aria-label="GitHub profile (opens in new tab)"
-                title="GitHub Profile"
+                title="View my GitHub profile"
               >
                 <Github className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
                 aria-label="LinkedIn profile (opens in new tab)"
-                title="LinkedIn Profile"
+                title="Connect with me on LinkedIn"
               >
                 <Linkedin className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:fikreddu@gmail.com?subject=Portfolio%20Inquiry"
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
-                aria-label="Send email to your.email@example.com"
-                title="Email Me"
+                aria-label="Send email to fikreddu@gmail.com"
+                title="Email me at fikreddu@gmail.com"
               >
                 <Mail className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
