@@ -10,7 +10,7 @@ import {
   FaCogs,
   FaShieldAlt,
 } from "react-icons/fa";
-import { ChevronDown, ChevronUp, Search, X } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 import { skills as skillsData } from "../../data/skills";
 import { Skill } from "../../types";
 import { LoadingSkeleton, EmptyState, Button, ErrorState } from "../UI";
@@ -70,7 +70,7 @@ const SkillCard: React.FC<SkillCardProps> = ({
     onHover(skill.id);
   }, [skill.id, onHover]);
 
-  const handleToggleExpand = useCallback(() => {
+  const handleToggle = useCallback(() => {
     onToggleExpand(skill.id);
   }, [skill.id, onToggleExpand]);
 
@@ -91,14 +91,18 @@ const SkillCard: React.FC<SkillCardProps> = ({
   return (
     <article
       className={`
-        flex flex-col bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-6 
-        shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 
+        flex flex-col bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl p-4 sm:p-6
+        shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 
         cursor-pointer border border-gray-600 h-full transform group
-        ${isHovered ? "ring-2 ring-blue-500 shadow-blue-500/25 scale-105" : ""}
+        ${
+          isHovered
+            ? "ring-2 ring-blue-500 shadow-blue-500/25 scale-[1.02]"
+            : ""
+        }
         ${isAnimated ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
       `}
       style={{
-        transitionDelay: `${index * 100}ms`,
+        transitionDelay: `${index * 50}ms`,
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onLeave}
@@ -109,22 +113,22 @@ const SkillCard: React.FC<SkillCardProps> = ({
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          handleToggleExpand();
+          handleToggle();
         }
       }}
     >
       {/* Icon Section */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-3 sm:mb-4">
         <div
           className={`
-            p-4 rounded-full bg-gradient-to-br ${iconGradient} 
+            p-3 sm:p-4 rounded-full bg-gradient-to-br ${iconGradient} 
             transition-all duration-300 group-hover:scale-110 group-hover:rotate-6
             ${isHovered ? "shadow-lg shadow-current/25" : ""}
           `}
         >
           {IconComponent && (
-            <IconComponent 
-              className="text-white text-3xl" 
+            <IconComponent
+              className="text-white text-2xl sm:text-3xl"
               aria-hidden="true"
             />
           )}
@@ -132,20 +136,20 @@ const SkillCard: React.FC<SkillCardProps> = ({
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-semibold text-white mb-3 text-center group-hover:text-blue-300 transition-colors duration-300">
+      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 text-center group-hover:text-blue-300 transition-colors duration-300">
         {skill.title}
       </h3>
 
       {/* Proficiency Level */}
-      <div className="mb-4">
+      <div className="mb-3 sm:mb-4">
         <span className={`text-sm font-medium ${proficiencyInfo.color}`}>
           {proficiencyInfo.text}
         </span>
       </div>
 
       {/* Description */}
-      <div className="flex-1 flex flex-col mt-2">
-        <p 
+      <div className="flex-1 flex flex-col">
+        <p
           className={`
             text-gray-300 text-sm leading-relaxed transition-all duration-300
             ${isExpanded ? "" : "line-clamp-3"}
@@ -159,23 +163,20 @@ const SkillCard: React.FC<SkillCardProps> = ({
           <Button
             variant="ghost"
             size="sm"
-            onClick={handleToggleExpand}
-            className="mt-3 self-start text-blue-400 hover:text-blue-300 p-0 h-auto"
-            rightIcon={isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            onClick={handleToggle}
+            className="mt-2 sm:mt-3 self-start text-blue-400 hover:text-blue-300 p-0 h-auto text-sm"
+            rightIcon={
+              isExpanded ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )
+            }
           >
             {isExpanded ? "Show less" : "Show more"}
           </Button>
         )}
       </div>
-
-      {/* Hover Effect Overlay */}
-      <div 
-        className={`
-          absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 
-          opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none
-        `}
-        aria-hidden="true"
-      />
     </article>
   );
 };
@@ -184,16 +185,18 @@ const Skills: React.FC<SkillsProps> = ({
   skills = skillsData,
   loading = false,
   error,
-  onRetry
+  onRetry,
 }) => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [expandedSkills, setExpandedSkills] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "level">("name");
-  const [filterLevel, setFilterLevel] = useState<"all" | "beginner" | "intermediate" | "advanced" | "expert">("all");
+  const [filterLevel, setFilterLevel] = useState<
+    "all" | "beginner" | "intermediate" | "advanced" | "expert"
+  >("all");
 
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
@@ -207,7 +210,7 @@ const Skills: React.FC<SkillsProps> = ({
   }, []);
 
   const handleToggleExpand = useCallback((skillId: string) => {
-    setExpandedSkills(prev => {
+    setExpandedSkills((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(skillId)) {
         newSet.delete(skillId);
@@ -230,14 +233,18 @@ const Skills: React.FC<SkillsProps> = ({
 
   // Filter and sort skills
   const filteredAndSortedSkills = useMemo(() => {
-    let filtered = skills.filter(skill => {
-      const matchesSearch = skill.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           skill.description.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesLevel = filterLevel === "all" || 
+    let filtered = skills.filter((skill) => {
+      const matchesSearch =
+        skill.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        skill.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesLevel =
+        filterLevel === "all" ||
         (filterLevel === "expert" && skill.level >= 90) ||
         (filterLevel === "advanced" && skill.level >= 80 && skill.level < 90) ||
-        (filterLevel === "intermediate" && skill.level >= 70 && skill.level < 80) ||
+        (filterLevel === "intermediate" &&
+          skill.level >= 70 &&
+          skill.level < 80) ||
         (filterLevel === "beginner" && skill.level < 70);
 
       return matchesSearch && matchesLevel;
@@ -256,20 +263,30 @@ const Skills: React.FC<SkillsProps> = ({
 
   if (loading) {
     return (
-      <section className="w-full py-10" aria-label="Loading skills">
-        <div className="max-w-6xl mx-auto px-4">
-          <LoadingSkeleton variant="text" width="w-48" height="h-8" className="mx-auto mb-8" />
-          <div className="bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <div key={index} className="space-y-4">
-                  <LoadingSkeleton variant="avatar" className="mx-auto" />
-                  <LoadingSkeleton variant="text" width="w-3/4" className="mx-auto" />
-                  <LoadingSkeleton variant="text" count={3} />
-                  <LoadingSkeleton variant="button" />
-                </div>
-              ))}
-            </div>
+      <section
+        className="w-full py-8 sm:py-12 px-4 sm:px-6"
+        aria-label="Loading skills"
+      >
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 sm:mb-4">
+              My Skills
+            </h2>
+            <div className="h-1 w-20 sm:w-24 bg-blue-500 rounded-full mx-auto"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 rounded-xl p-4 sm:p-6 animate-pulse"
+              >
+                <div className="h-12 w-12 sm:h-14 sm:w-14 bg-gray-700 rounded-full mx-auto mb-4"></div>
+                <div className="h-6 bg-gray-700 rounded w-3/4 mx-auto mb-3"></div>
+                <div className="h-3 bg-gray-700 rounded w-full mb-2"></div>
+                <div className="h-3 bg-gray-700 rounded w-5/6 mb-2"></div>
+                <div className="h-3 bg-gray-700 rounded w-4/6"></div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -278,13 +295,16 @@ const Skills: React.FC<SkillsProps> = ({
 
   if (error) {
     return (
-      <section className="w-full py-10" aria-label="Error loading skills">
-        <div className="max-w-6xl mx-auto px-4">
+      <section
+        className="w-full py-8 sm:py-12 px-4 sm:px-6"
+        aria-label="Error loading skills"
+      >
+        <div className="max-w-6xl mx-auto w-full">
           <ErrorState
             title="Failed to load skills"
             message={error}
             onRetry={onRetry}
-            className="mt-20"
+            className="mt-10 sm:mt-20"
           />
         </div>
       </section>
@@ -292,164 +312,143 @@ const Skills: React.FC<SkillsProps> = ({
   }
 
   return (
-    <section 
+    <section
       ref={ref}
-      className="w-full py-10"
+      className="w-full py-8 sm:py-12 px-4 sm:px-6"
       aria-labelledby="skills-heading"
     >
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto w-full">
         {/* Header */}
-        <header className="text-center mb-12">
-          <h2 id="skills-heading" className="text-4xl font-bold text-white mb-4">
+        <header className="text-center mb-8 sm:mb-12">
+          <h2
+            id="skills-heading"
+            className="text-3xl sm:text-4xl font-bold text-white mb-3 sm:mb-4"
+          >
             My Skills
           </h2>
-          <div className="mx-auto h-1 w-24 bg-blue-500 rounded" aria-hidden="true" />
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiency levels 
-            across various development domains.
+          <div
+            className="h-1 w-20 sm:w-24 bg-blue-500 rounded-full mx-auto"
+            aria-hidden="true"
+          ></div>
+          <p className="text-gray-300 mt-4 sm:mt-5 text-sm sm:text-base max-w-2xl mx-auto">
+            A comprehensive overview of my technical expertise and proficiency
+            levels across various development domains.
           </p>
         </header>
 
         {/* Search and Filter Controls */}
-        <div className="mb-8">
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-4">
-            {/* Search Input */}
-            <div className="relative">
-              <label htmlFor="skills-search" className="sr-only">
-                Search skills
-              </label>
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center mb-4">
+            <div className="relative w-full max-w-md">
               <input
-                id="skills-search"
-                type="text"
-                placeholder="Search skills..."
+                type="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search skills..."
                 className="
-                  px-4 py-2 pl-10 pr-10 bg-gray-700 text-white rounded-lg 
-                  border border-gray-600 focus:outline-none focus:border-blue-500 
-                  focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-64 
-                  transition-all duration-200
+                  pl-10 pr-4 py-2 w-full bg-gray-700 text-white rounded-lg 
+                  border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                  focus:border-blue-500 transition-all duration-200 text-sm sm:text-base
                 "
+                aria-label="Search skills"
               />
-              <Search 
-                className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" 
-                aria-hidden="true" 
-              />
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
               {searchTerm && (
                 <button
+                  type="button"
                   onClick={handleClearSearch}
-                  className="
-                    absolute right-3 top-2.5 text-gray-400 hover:text-white
-                    focus:outline-none focus:text-white
-                  "
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors"
                   aria-label="Clear search"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="h-5 w-5" />
                 </button>
               )}
             </div>
 
-            {/* Sort Dropdown */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-              className="
-                px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600
-                focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
-                transition-all duration-200
-              "
-              aria-label="Sort skills by"
-            >
-              <option value="name">Sort by Name</option>
-              <option value="level">Sort by Proficiency</option>
-            </select>
-
-            {/* Filter Dropdown */}
-            <select
-              value={filterLevel}
-              onChange={(e) => setFilterLevel(e.target.value as typeof filterLevel)}
-              className="
-                px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600
-                focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
-                transition-all duration-200
-              "
-              aria-label="Filter by proficiency level"
-            >
-              <option value="all">All Levels</option>
-              <option value="expert">Expert (90%+)</option>
-              <option value="advanced">Advanced (80-89%)</option>
-              <option value="intermediate">Intermediate (70-79%)</option>
-              <option value="beginner">Beginner (&lt;70%)</option>
-            </select>
-          </div>
-
-          {/* Active Filters */}
-          {(searchTerm || sortBy !== "name" || filterLevel !== "all") && (
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-sm text-gray-400">Active filters:</span>
-              {searchTerm && (
-                <span className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  "{searchTerm}"
-                </span>
-              )}
-              {sortBy !== "name" && (
-                <span className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  Sort: {sortBy}
-                </span>
-              )}
-              {filterLevel !== "all" && (
-                <span className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  {filterLevel}
-                </span>
-              )}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleClearFilters}
-                leftIcon={<X className="w-3 h-3" />}
-                className="text-xs"
+            <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as "name" | "level")}
+                className="
+                  px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                  text-sm sm:text-base w-full sm:w-auto
+                "
+                aria-label="Sort by"
               >
-                Clear all
-              </Button>
+                <option value="name">Sort by: Name</option>
+                <option value="level">Sort by: Level</option>
+              </select>
+
+              <select
+                value={filterLevel}
+                onChange={(e) => setFilterLevel(e.target.value as any)}
+                className="
+                  px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                  text-sm sm:text-base w-full sm:w-auto
+                "
+                aria-label="Filter by level"
+              >
+                <option value="all">All Levels</option>
+                <option value="expert">Expert (90-100%)</option>
+                <option value="advanced">Advanced (80-89%)</option>
+                <option value="intermediate">Intermediate (70-79%)</option>
+                <option value="beginner">Beginner (0-69%)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {filteredAndSortedSkills.length > 0 ? (
+            filteredAndSortedSkills.map((skill, index) => (
+              <SkillCard
+                key={skill.id}
+                skill={skill}
+                index={index}
+                isHovered={hoveredSkill === skill.id}
+                isAnimated={inView}
+                isExpanded={expandedSkills.has(skill.id)}
+                onHover={handleSkillHover}
+                onLeave={handleSkillLeave}
+                onToggleExpand={handleToggleExpand}
+              />
+            ))
+          ) : (
+            <div className="col-span-full py-12 text-center">
+              <EmptyState
+                variant="search"
+                title="No skills found"
+                message="Try adjusting your search terms or filters to find what you're looking for."
+                actionLabel="Clear filters"
+                onAction={handleClearFilters}
+              />
             </div>
           )}
         </div>
 
-        {/* Skills Grid */}
-        <main className="bg-gray-800 rounded-2xl shadow-2xl p-6 sm:p-10">
-          {filteredAndSortedSkills.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredAndSortedSkills.map((skill, index) => (
-                <SkillCard
-                  key={skill.id}
-                  skill={skill}
-                  index={index}
-                  isHovered={hoveredSkill === skill.id}
-                  isAnimated={inView}
-                  isExpanded={expandedSkills.has(skill.id)}
-                  onHover={handleSkillHover}
-                  onLeave={handleSkillLeave}
-                  onToggleExpand={handleToggleExpand}
-                />
-              ))}
-            </div>
-          ) : (
-            <EmptyState
-              variant="search"
-              title="No skills found"
-              message="Try adjusting your search terms or filters to find what you're looking for."
-              actionLabel="Clear filters"
-              onAction={handleClearFilters}
-            />
-          )}
-        </main>
-
         {/* Skills Count */}
         {filteredAndSortedSkills.length > 0 && (
-          <footer className="text-center mt-6 text-gray-400">
-            <span className="sr-only">Results: </span>
+          <div className="text-center mt-8 text-sm text-gray-400">
             Showing {filteredAndSortedSkills.length} of {skills.length} skills
-          </footer>
+          </div>
         )}
       </div>
     </section>
