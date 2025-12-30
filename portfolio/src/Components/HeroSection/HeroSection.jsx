@@ -76,8 +76,9 @@ export default function HeroSection() {
 
     // Add keyboard event listeners
     useEffect(() => {
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+        const handleKeyDownWrapper = (e) => handleKeyDown(e);
+        window.addEventListener('keydown', handleKeyDownWrapper);
+        return () => window.removeEventListener('keydown', handleKeyDownWrapper);
     }, [handleKeyDown]);
 
     const nextSlide = useCallback(() => {
@@ -145,10 +146,15 @@ export default function HeroSection() {
           ))}
         </div>
 
-        {/* Navigation Arrows - Only show on hover or focus */}
-        <div className={`absolute inset-0 z-10 flex items-center justify-between px-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0 hover:opacity-100'}`}>
+        {/* Navigation Arrows */}
+        <div className="absolute inset-0 z-20 flex items-center justify-between px-4">
           <button
-            onClick={prevSlide}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              prevSlide();
+            }}
+            onMouseDown={(e) => e.preventDefault()} // Prevent focus on click
             className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Previous slide"
           >
@@ -156,7 +162,12 @@ export default function HeroSection() {
           </button>
 
           <button
-            onClick={nextSlide}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              nextSlide();
+            }}
+            onMouseDown={(e) => e.preventDefault()} // Prevent focus on click
             className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Next slide"
           >

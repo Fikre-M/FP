@@ -137,39 +137,14 @@ const SkillCard: React.FC<SkillCardProps> = ({
       </h3>
 
       {/* Proficiency Level */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="mb-4">
         <span className={`text-sm font-medium ${proficiencyInfo.color}`}>
           {proficiencyInfo.text}
         </span>
-        <span className="text-sm text-gray-400">
-          {skill.level}%
-        </span>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="w-full mb-4">
-        <div className="w-full bg-gray-600 rounded-full h-2 overflow-hidden">
-          <div
-            className={`
-              h-2 rounded-full bg-gradient-to-r ${iconGradient} 
-              transition-all duration-1000 ease-out
-              ${isAnimated ? "animate-pulse" : ""}
-            `}
-            style={{ 
-              width: isAnimated ? `${skill.level}%` : '0%',
-              transitionDelay: `${index * 200}ms`
-            }}
-            role="progressbar"
-            aria-valuenow={skill.level}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={`${skill.title} proficiency: ${skill.level}%`}
-          />
-        </div>
       </div>
 
       {/* Description */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col mt-2">
         <p 
           className={`
             text-gray-300 text-sm leading-relaxed transition-all duration-300
