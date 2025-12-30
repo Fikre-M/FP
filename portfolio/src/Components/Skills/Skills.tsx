@@ -78,16 +78,6 @@ const SkillCard: React.FC<SkillCardProps> = ({
   const IconComponent = iconMap[skill.icon];
   const iconGradient = iconGradients[skill.icon] || "from-gray-400 to-gray-500";
 
-  // Determine proficiency level text and color
-  const getProficiencyInfo = (level: number) => {
-    if (level >= 90) return { text: "Expert", color: "text-green-400" };
-    if (level >= 80) return { text: "Advanced", color: "text-blue-400" };
-    if (level >= 70) return { text: "Intermediate", color: "text-yellow-400" };
-    return { text: "Beginner", color: "text-orange-400" };
-  };
-
-  const proficiencyInfo = getProficiencyInfo(skill.level);
-
   return (
     <article
       className={`
@@ -140,13 +130,6 @@ const SkillCard: React.FC<SkillCardProps> = ({
         {skill.title}
       </h3>
 
-      {/* Proficiency Level */}
-      <div className="mb-3 sm:mb-4">
-        <span className={`text-sm font-medium ${proficiencyInfo.color}`}>
-          {proficiencyInfo.text}
-        </span>
-      </div>
-
       {/* Description */}
       <div className="flex-1 flex flex-col">
         <p
@@ -190,10 +173,6 @@ const Skills: React.FC<SkillsProps> = ({
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   const [expandedSkills, setExpandedSkills] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState<"name" | "level">("name");
-  const [filterLevel, setFilterLevel] = useState<
-    "all" | "beginner" | "intermediate" | "advanced" | "expert"
-  >("all");
 
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -225,41 +204,21 @@ const Skills: React.FC<SkillsProps> = ({
     setSearchTerm("");
   }, []);
 
-  const handleClearFilters = useCallback(() => {
-    setSearchTerm("");
-    setSortBy("name");
-    setFilterLevel("all");
-  }, []);
-
   // Filter and sort skills
-  const filteredAndSortedSkills = useMemo(() => {
+  const filteredSkills = useMemo(() => {
     let filtered = skills.filter((skill) => {
       const matchesSearch =
         skill.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         skill.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesLevel =
-        filterLevel === "all" ||
-        (filterLevel === "expert" && skill.level >= 90) ||
-        (filterLevel === "advanced" && skill.level >= 80 && skill.level < 90) ||
-        (filterLevel === "intermediate" &&
-          skill.level >= 70 &&
-          skill.level < 80) ||
-        (filterLevel === "beginner" && skill.level < 70);
-
-      return matchesSearch && matchesLevel;
+      return matchesSearch;
     });
 
-    // Sort skills
-    filtered.sort((a, b) => {
-      if (sortBy === "level") {
-        return b.level - a.level;
-      }
-      return a.title.localeCompare(b.title);
-    });
+    // Sort skills by name
+    filtered.sort((a, b) => a.title.localeCompare(b.title));
 
     return filtered;
-  }, [skills, searchTerm, sortBy, filterLevel]);
+  }, [skills, searchTerm]);
 
   if (loading) {
     return (
@@ -379,46 +338,13 @@ const Skills: React.FC<SkillsProps> = ({
                 </button>
               )}
             </div>
-
-            <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as "name" | "level")}
-                className="
-                  px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                  text-sm sm:text-base w-full sm:w-auto
-                "
-                aria-label="Sort by"
-              >
-                <option value="name">Sort by: Name</option>
-                <option value="level">Sort by: Level</option>
-              </select>
-
-              <select
-                value={filterLevel}
-                onChange={(e) => setFilterLevel(e.target.value as any)}
-                className="
-                  px-3 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                  text-sm sm:text-base w-full sm:w-auto
-                "
-                aria-label="Filter by level"
-              >
-                <option value="all">All Levels</option>
-                <option value="expert">Expert (90-100%)</option>
-                <option value="advanced">Advanced (80-89%)</option>
-                <option value="intermediate">Intermediate (70-79%)</option>
-                <option value="beginner">Beginner (0-69%)</option>
-              </select>
-            </div>
           </div>
         </div>
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {filteredAndSortedSkills.length > 0 ? (
-            filteredAndSortedSkills.map((skill, index) => (
+          {filteredSkills.length > 0 ? (
+            filteredSkills.map((skill, index) => (
               <SkillCard
                 key={skill.id}
                 skill={skill}
@@ -438,16 +364,16 @@ const Skills: React.FC<SkillsProps> = ({
                 title="No skills found"
                 message="Try adjusting your search terms or filters to find what you're looking for."
                 actionLabel="Clear filters"
-                onAction={handleClearFilters}
+                onAction={handleClearSearch}
               />
             </div>
           )}
         </div>
 
         {/* Skills Count */}
-        {filteredAndSortedSkills.length > 0 && (
+        {filteredSkills.length > 0 && (
           <div className="text-center mt-8 text-sm text-gray-400">
-            Showing {filteredAndSortedSkills.length} of {skills.length} skills
+            Showing {filteredSkills.length} of {skills.length} skills
           </div>
         )}
       </div>
