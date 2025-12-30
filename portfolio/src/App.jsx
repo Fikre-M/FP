@@ -10,7 +10,6 @@ import About from "./Components/AboutPage/About";
 import ContactSection from "./Components/ContactSection/ContactSection";
 import Skills from "./Components/Skills/Skills";
 import ProjectGallery from "./Components/ProjectGallery/ProjectGallery";
-import ProblemSolving from "./Components/ProblemSolving/ProblemSolving";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import HeroSection from "./Components/HeroSection/HeroSection";
 
@@ -48,9 +47,6 @@ function App() {
               </section>
               <section id="projects">
                 <ProjectGallery />
-              </section>
-              <section id="problem-solving">
-                <ProblemSolving />
               </section>
               <section id="contact">
                 <ContactSection />
