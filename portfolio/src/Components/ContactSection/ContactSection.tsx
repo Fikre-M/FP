@@ -165,13 +165,13 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section className="w-full py-10" aria-labelledby="contact-heading">
+    <section className="w-full py-6" aria-labelledby="contact-heading">
       {/* Header */}
-      <header className="text-center mb-12">
-        <h2 id="contact-heading" className="text-4xl font-bold text-white mb-4">
+      <header className="text-center mb-6">
+        <h2 id="contact-heading" className="text-3xl font-bold text-white mb-2">
           Contact
         </h2>
-        <div className="mx-auto h-1 w-24 bg-blue-500 rounded" aria-hidden="true" />
+        <div className="mx-auto h-1 w-20 bg-blue-500 rounded" aria-hidden="true" />
       </header>
 
       {/* Main Container */}
@@ -180,19 +180,18 @@ const ContactSection: React.FC = () => {
         className="
           bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl shadow-lg 
           hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 
-          border border-gray-600 hover:shadow-blue-500/25 p-8 w-full max-w-5xl mx-auto 
-          flex flex-col lg:flex-row gap-8
+          border border-gray-600 hover:shadow-blue-500/25 p-6 w-full max-w-5xl mx-auto 
+          flex flex-col lg:flex-row gap-6
         "
       >
         {/* Contact Information */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center">
-          <h3 className="text-2xl font-semibold text-white mb-6 text-center lg:text-left">
+          <h3 className="text-xl font-semibold text-white mb-4 text-center lg:text-left">
             Get In Touch
           </h3>
           
-          <p className="text-gray-300 mb-6 text-center lg:text-left">
-            I'm always open to discussing new opportunities, interesting projects, 
-            or just having a chat about technology and development.
+          <p className="text-gray-300 text-sm mb-4 text-center lg:text-left">
+            I'm open to discussing opportunities, projects, or tech discussions.
           </p>
 
           {/* Contact Methods */}
@@ -204,9 +203,9 @@ const ContactSection: React.FC = () => {
                   key={index}
                   href={contact.href}
                   className="
-                    flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 
-                    hover:bg-gray-800 transition-colors duration-200
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                    flex items-center gap-2 p-2 rounded-lg bg-gray-800/50 
+                    hover:bg-gray-800 transition-colors duration-200 text-sm
+                    focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1
                     focus:ring-offset-gray-700
                   "
                   aria-label={contact.ariaLabel}
@@ -222,7 +221,7 @@ const ContactSection: React.FC = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex gap-4 justify-center lg:justify-start">
+          <div className="flex gap-3 justify-center lg:justify-start mt-4">
             {socialLinks.map((social, index) => {
               const Icon = social.icon;
               return (
@@ -232,9 +231,9 @@ const ContactSection: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    p-3 rounded-full bg-gray-800/50 hover:bg-blue-600 
+                    p-2 rounded-full bg-gray-800/50 hover:bg-blue-600 
                     text-white transition-all duration-200 transform hover:scale-110
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                    focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1
                     focus:ring-offset-gray-700
                   "
                   aria-label={social.ariaLabel}
@@ -248,14 +247,14 @@ const ContactSection: React.FC = () => {
 
         {/* Contact Form */}
         <div className="w-full lg:w-1/2">
-          <h3 className="text-xl font-semibold text-white text-center mb-6">
+          <h3 className="text-lg font-semibold text-white text-center mb-4">
             Send a Message
           </h3>
 
           {/* Success State */}
           {formStatus.isSuccess && (
             <div 
-              className="mb-6 p-4 bg-green-600/20 border border-green-500 rounded-lg flex items-center gap-3"
+              className="mb-4 p-3 text-sm bg-green-600/20 border border-green-500 rounded-lg flex items-center gap-2"
               role="alert"
               aria-live="polite"
             >
@@ -269,9 +268,9 @@ const ContactSection: React.FC = () => {
 
           {/* Error State */}
           {formStatus.error && (
-            <div className="mb-6">
+            <div className="mb-4">
               <div 
-                className="p-4 bg-red-600/20 border border-red-500 rounded-lg"
+                className="p-3 text-sm bg-red-600/20 border border-red-500 rounded-lg"
                 role="alert"
                 aria-live="polite"
               >
@@ -290,18 +289,18 @@ const ContactSection: React.FC = () => {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
             {/* Name Field */}
             <div>
-              <label htmlFor="user_name" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="user_name" className="block text-xs font-medium text-gray-300 mb-1">
                 Name *
               </label>
               <input
                 id="user_name"
                 type="text"
                 className={`
-                  w-full p-3 rounded-lg bg-gray-800 text-white border transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                  w-full p-2 text-sm rounded-lg bg-gray-800 text-white border transition-all duration-200
+                  focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent
                   disabled:opacity-50 disabled:cursor-not-allowed
                   ${errors.user_name 
                     ? 'border-red-500 focus:ring-red-500' 
@@ -333,7 +332,7 @@ const ContactSection: React.FC = () => {
 
             {/* Email Field */}
             <div>
-              <label htmlFor="user_email" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="user_email" className="block text-xs font-medium text-gray-300 mb-1">
                 Email *
               </label>
               <input
@@ -369,12 +368,12 @@ const ContactSection: React.FC = () => {
 
             {/* Message Field */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="message" className="block text-xs font-medium text-gray-300 mb-1">
                 Message *
               </label>
               <textarea
                 id="message"
-                rows={4}
+                rows={3}
                 className={`
                   w-full p-3 rounded-lg bg-gray-800 text-white border transition-all duration-200
                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
@@ -421,14 +420,14 @@ const ContactSection: React.FC = () => {
               loadingText="Sending message..."
               disabled={!isValid || formStatus.isSubmitting}
               leftIcon={<Send className="w-4 h-4" />}
-              className="mt-6"
+              className="mt-4 py-2 text-sm"
             >
               Send Message
             </Button>
           </form>
 
           {/* Form Help Text */}
-          <p className="mt-4 text-xs text-gray-400 text-center">
+          <p className="mt-3 text-xs text-gray-400 text-center">
             Your information is secure and will only be used to respond to your message.
           </p>
         </div>
