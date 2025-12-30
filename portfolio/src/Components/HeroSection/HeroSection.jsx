@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
     Code2,
     Github,
@@ -8,62 +8,120 @@ import {
     ChevronRight,
 } from "lucide-react";
 
+// Import local images
+import healthcareBg from "../../assets/healthcare-bg.jpg";
+import tourBg from "../../assets/tour-bg.jpg";
+import shelterBg from "../../assets/shelter-bg.jpg";
+import portfolioBg from "../../assets/portfolio-bg.jpg";
+
 export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const slides = [
-      {
-        image:
-          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80",
-        title: "AI Healthcare & Medical Appointment System",
-        description: "Full-stack App",
-      },
-      {
-        image:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
-        title: "AI Ethiopian Tour + Cultural Concierge App",
-        description: "Full-stack App",
-      },
-      {
-        image:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80",
-        title: "AI Shelter Operations & Case Management System",
-        description: "Frontend App",
-      },
-      {
-        image:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80",
-        title: "Personal Portfolio",
-        description: "FikreWorks",
-      },
+        {
+            image: healthcareBg,
+            title: "AI Healthcare & Medical Appointment System",
+            description: "Full-stack App",
+        },
+        {
+            image: tourBg,
+            title: "AI Ethiopian Tour + Cultural Concierge App",
+            description: "Full-stack App",
+        },
+        {
+            image: shelterBg,
+            title: "AI Shelter Operations & Case Management System",
+            description: "Frontend App",
+        },
+        {
+            image: portfolioBg,
+            title: "Personal Portfolio",
+            description: "FikreWorks",
+        },
     ];
 
-    const scrollToSection = (id) => {
+    const scrollToSection = useCallback((id) => {
         const element = document.getElementById(id);
         if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+            element.scrollIntoView({ behavior: "smooth" });
         }
-    };
+    }, []);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 5000);
-        return () => clearInterval(timer);
+    // Handle keyboard navigation
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'ArrowRight') {
+            setCurrentSlide(prev => (prev + 1) % slides.length);
+        } else if (e.key === 'ArrowLeft') {
+            setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
+        } else if (e.key >= '1' && e.key <= slides.length.toString()) {
+            // Jump to specific slide (1-9)
+            const slideIndex = parseInt(e.key) - 1;
+            if (slideIndex < slides.length) {
+                setCurrentSlide(slideIndex);
+            }
+        }
     }, [slides.length]);
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-    };
+    // Auto-advance slides when not hovered
+    useEffect(() => {
+        if (!isHovered) {
+            const timer = setTimeout(() => {
+                setCurrentSlide(prev => (prev + 1) % slides.length);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [currentSlide, isHovered, slides.length]);
 
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    // Add keyboard event listeners
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
+
+    const nextSlide = useCallback(() => {
+        setCurrentSlide(prev => (prev + 1) % slides.length);
+    }, [slides.length]);
+
+    const prevSlide = useCallback(() => {
+        setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
+    }, [slides.length]);
+
+    // Preload images
+    useEffect(() => {
+        const loadImages = async () => {
+            const imagePromises = slides.map(slide => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.src = slide.image;
+                    img.onload = resolve;
+                    img.onerror = reject;
+                });
+            });
+
+            try {
+                await Promise.all(imagePromises);
+                setIsLoading(false);
+            } catch (error) {
+                console.error('Error loading images:', error);
+                setIsLoading(false);
+            }
+        };
+
+        loadImages();
+    }, [slides]);
 
     return (
       <section
         id="HeroSection"
         className="relative min-h-screen overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsHovered(true)}
+        onBlur={() => setIsHovered(false)}
+        role="region"
+        aria-label="Hero Section"
       >
         {/* Background Images Carousel */}
         <div className="absolute inset-0">
@@ -79,27 +137,32 @@ export default function HeroSection() {
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-gray-900/90"></div>
+              <div 
+                className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-gray-900/90"
+                aria-hidden="true"
+              ></div>
             </div>
           ))}
         </div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-gray-800/50 hover:bg-gray-700/70 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="text-white" size={24} />
-        </button>
+        {/* Navigation Arrows - Only show on hover or focus */}
+        <div className={`absolute inset-0 z-10 flex items-center justify-between px-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0 hover:opacity-100'}`}>
+          <button
+            onClick={prevSlide}
+            className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="text-white" size={24} aria-hidden="true" />
+          </button>
 
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-gray-800/50 hover:bg-gray-700/70 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="text-white" size={24} />
-        </button>
+          <button
+            onClick={nextSlide}
+            className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="text-white" size={24} aria-hidden="true" />
+          </button>
+        </div>
 
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
@@ -107,89 +170,101 @@ export default function HeroSection() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`h-3 rounded-full transition-all duration-300 ${
+              className={`h-2.5 md:h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent ${
                 index === currentSlide
                   ? "bg-blue-500 w-8"
                   : "bg-gray-400/50 hover:bg-gray-300 w-3"
               }`}
               aria-label={`Go to slide ${index + 1}`}
-            ></button>
+              aria-current={index === currentSlide ? 'true' : 'false'}
+            >
+              <span className="sr-only">Slide {index + 1}</span>
+            </button>
           ))}
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
-          <div className="max-w-4xl w-full text-center">
+        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12 md:py-24">
+          <div className="max-w-4xl w-full text-center px-4 sm:px-6 lg:px-8">
+            {/* Loading State */}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="animate-pulse text-white text-lg">Loading...</div>
+              </div>
+            )}
+
             {/* Project Label */}
-            <div className="mb-6 inline-block px-4 py-2 bg-blue-500/30 backdrop-blur-sm rounded-full border border-blue-500/50">
-              <p className="text-blue-200 text-sm font-semibold">
+            <div className="mb-4 sm:mb-6 inline-block px-4 py-2 bg-blue-500/30 backdrop-blur-sm rounded-full border border-blue-500/50 transform transition-all duration-500 ease-in-out">
+              <p className="text-blue-200 text-sm sm:text-base font-semibold">
                 {slides[currentSlide].title}
               </p>
             </div>
 
             {/* Name */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-2xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 drop-shadow-2xl transform transition-all duration-500 ease-in-out">
               Fikremariam Kassa
             </h1>
 
             {/* Title */}
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Code2 className="text-blue-400 drop-shadow-lg" size={28} />
-              <h2 className="text-2xl md:text-3xl text-blue-300 font-semibold drop-shadow-lg">
+            <div className="flex items-center justify-center gap-2 mb-4 sm:mb-6 transform transition-all duration-500 ease-in-out">
+              <Code2 className="text-blue-400 drop-shadow-lg w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-300 font-semibold drop-shadow-lg">
                 Web Developer / Software Engineer
               </h2>
             </div>
 
             {/* Value Statement */}
-            <p className="text-xl md:text-2xl text-white mb-3 max-w-2xl mx-auto drop-shadow-lg font-medium">
-              I build responsive, user-friendly, new generation and
-              indestry-level web applications.
+            <p className="text-lg sm:text-xl md:text-2xl text-white mb-3 max-w-2xl mx-auto drop-shadow-lg font-medium leading-relaxed transform transition-all duration-500 ease-in-out">
+              I build responsive, user-friendly, and industry-level web applications.
             </p>
 
             {/* Current Project Description */}
-            <p className="text-base text-gray-200 mb-10 italic drop-shadow-md">
+            <p className="text-sm sm:text-base text-gray-200 mb-8 sm:mb-10 italic drop-shadow-md transform transition-all duration-500 ease-in-out">
               {slides[currentSlide].description}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 transform transition-all duration-500 ease-in-out">
               <button
                 onClick={() => scrollToSection("projects")}
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-2xl hover:shadow-blue-500/50"
               >
                 View Projects
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
               >
                 Contact Me
               </button>
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center gap-4 pt-4">
+            <div className="flex justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
               <a
-                href="https://github.com"
+                href="https://github.com/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 shadow-xl"
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                aria-label="GitHub profile"
               >
-                <Github className="text-white" size={22} />
+                <Github className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 shadow-xl"
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                aria-label="LinkedIn profile"
               >
-                <Linkedin className="text-white" size={22} />
+                <Linkedin className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
               <a
-                href="mailto:john@example.com"
-                className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 shadow-xl"
+                href="mailto:your.email@example.com"
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                aria-label="Send email"
               >
-                <Mail className="text-white" size={22} />
+                <Mail className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </a>
             </div>
           </div>

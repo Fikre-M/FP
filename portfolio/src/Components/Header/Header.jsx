@@ -1,5 +1,28 @@
 import { useState, useCallback, useEffect } from "react";
 import Logo from "../Logo/Logo";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+
+// Social media links data
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/yourusername",
+    icon: <FaGithub className="w-5 h-5" />,
+    color: "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/yourusername",
+    icon: <FaLinkedin className="w-5 h-5" />,
+    color: "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+  },
+  {
+    name: "Email",
+    url: "mailto:your.email@example.com",
+    icon: <FaEnvelope className="w-5 h-5" />,
+    color: "text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+  }
+];
 
 const navLinks = [
   { label: "About", id: "about" },
@@ -94,18 +117,34 @@ export default function Header() {
             ))}
           </ul>
           
-          {/* Theme Toggle */}
-          <button
-            onClick={() => {
-              document.documentElement.classList.toggle('dark');
-            }}
-            className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors duration-200"
-            aria-label="Toggle theme"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-          </button>
+          {/* Social Media Links */}
+          <div className="hidden md:flex items-center space-x-2">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 ${social.color}`}
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={() => {
+                document.documentElement.classList.toggle('dark');
+              }}
+              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors duration-200"
+              aria-label="Toggle theme"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -210,6 +249,22 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          
+          {/* Social Media Icons for Mobile */}
+          <div className="flex justify-center space-x-4 mt-4 pt-4 border-t border-gray-600">
+            {socialLinks.map((social) => (
+              <a
+                key={`mobile-${social.name}`}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 ${social.color}`}
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </header>
