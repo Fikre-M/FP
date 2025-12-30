@@ -61,9 +61,14 @@ export default function Footer() {
       <div className="flex md:hidden flex-col items-center py-4">
         <div className="flex justify-center w-full pl-8">
           <a
-            href="#about"
-            className="block text-white w-48 mb-4"
-            onClick={(e) => handleNavClick(e, "about")}
+            href="#top"
+            className="block text-white w-48 mb-4 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              setActiveSection('home');
+            }}
+            aria-label="Scroll to top"
           >
             <Logo />
           </a>
@@ -96,9 +101,14 @@ export default function Footer() {
       {/* Desktop: Logo left, nav right - NO social icons */}
       <nav className="container mx-auto px-4 py-4 hidden md:flex items-center justify-between">
         <a
-          href="#about"
-          className="text-white w-48"
-          onClick={(e) => handleNavClick(e, "about")}
+          href="#top"
+          className="text-white w-48 cursor-pointer"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActiveSection('home');
+          }}
+          aria-label="Scroll to top"
         >
           <Logo />
         </a>
