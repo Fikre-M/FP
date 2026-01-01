@@ -12,6 +12,7 @@ import Skills from "./Components/Skills/Skills";
 import ProjectGallery from "./Components/ProjectGallery/ProjectGallery";
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import HeroSection from "./Components/HeroSection/HeroSection";
+import Chatbot from "./Components/Chatbot/Chatbot";
 
 function App() {
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
               </section>
             </main>
             <Footer />
+            <Chatbot />
             <ScrollToTop />
             <Toaster
               position="bottom-right"
