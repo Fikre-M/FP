@@ -1,13 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
-import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
+import {
+  FaRobot,
+  FaTimes,
+  FaPaperPlane,
+  FaCode,
+  FaGithub,
+  FaLinkedin,
+  FaFileDownload,
+} from "react-icons/fa";
 
 const ChatbotContainer = styled.div`
   position: fixed;
   top: 6rem; /* Position below header */
   right: 2rem;
   z-index: 1000;
-  
+
   @media (max-width: 768px) {
     top: 5rem;
     right: 1rem;
@@ -15,7 +23,7 @@ const ChatbotContainer = styled.div`
 `;
 
 const ChatbotButton = styled.button`
-  background: ${({ theme }) => theme.primary};
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 50%;
@@ -26,68 +34,140 @@ const ChatbotButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
 const ChatWindow = styled.div`
   position: absolute;
-  top: 60px; /* Position below the chat button */
+  top: 70px; /* Position below the chat button */
   right: 0;
-  width: 320px;
-  height: 365px;
+  width: 330px;
+  max-height: 350px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #e5e7eb;
-  
+  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
+  transform: ${(props) =>
+    props.$isOpen ? "translateY(0)" : "translateY(10px)"};
+  visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+
   @media (max-width: 768px) {
-    width: 280px;
-    height: 400px;
+    width: calc(100vw - 2rem);
+    right: 0;
+    max-height: 60vh;
   }
 `;
 
 const ChatHeader = styled.div`
-  background: #3b82f6; /* Blue header */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
 `;
 
 const ChatMessages = styled.div`
   flex: 1;
-  padding: 1rem;
+  padding: 1.25rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  background: white;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  min-height: 300px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
 `;
 
 const Message = styled.div`
-  max-width: 80%;
+  max-width: 85%;
   padding: 0.75rem 1rem;
   border-radius: 1rem;
-  line-height: 1.4;
+  line-height: 1.5;
   word-wrap: break-word;
-  background: ${({ $isUser }) => 
-    $isUser ? '#3b82f6' : '#f3f4f6'};
-  color: ${({ $isUser }) => $isUser ? 'white' : '#1f2937'};
-  align-self: ${({ $isUser }) => $isUser ? 'flex-end' : 'flex-start'};
-  border: ${({ $isUser }) => 
-    !$isUser ? '1px solid #e5e7eb' : 'none'};
+  background: ${(props) =>
+    props.$isUser
+      ? "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"
+      : "white"};
+  color: ${(props) => (props.$isUser ? "white" : "#1f2937")};
+  align-self: ${(props) => (props.$isUser ? "flex-end" : "flex-start")};
+  border: ${(props) => (!props.$isUser ? "1px solid #e5e7eb" : "none")};
   font-size: 0.9rem;
+  box-shadow: ${(props) =>
+    !props.$isUser
+      ? "0 2px 4px rgba(0,0,0,0.05)"
+      : "0 2px 4px rgba(0,0,0,0.1)"};
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const QuickActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+`;
+
+const QuickActionButton = styled.button`
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+
+  &:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 const InputContainer = styled.div`
@@ -95,6 +175,7 @@ const InputContainer = styled.div`
   padding: 1rem;
   border-top: 1px solid #e5e7eb;
   background: white;
+  gap: 0.5rem;
 `;
 
 const Input = styled.input`
@@ -105,18 +186,18 @@ const Input = styled.input`
   outline: none;
   background: #f9fafb;
   color: #1f2937;
-  margin-right: 0.5rem;
   font-size: 0.9rem;
-  transition: border-color 0.2s;
-  
+  transition: all 0.2s;
+
   &:focus {
     border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 `;
 
 const SendButton = styled.button`
-  background: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   border: none;
   border-radius: 50%;
@@ -128,18 +209,18 @@ const SendButton = styled.button`
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
-  
+
   &:hover:not(:disabled) {
-    background: #2563eb;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
-  
+
   &:active:not(:disabled) {
     transform: translateY(0);
   }
-  
+
   &:disabled {
-    background: #9ca3af;
+    background: #cbd5e1;
     cursor: not-allowed;
   }
 `;
@@ -148,80 +229,275 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
-      text: "Hi there! I'm your portfolio assistant. How can I help you today?",
+      text: "👋 Hi! I'm your AI portfolio assistant. I can help visitors learn about your skills, projects, and experience. What would you like to know?",
       isUser: false,
+      quickActions: [
+        {
+          label: "View Projects",
+          action: () => handleQuickAction("projects"),
+          icon: <FaCode />,
+        },
+        {
+          label: "Skills & Tech",
+          action: () => handleQuickAction("skills"),
+          icon: <FaCode />,
+        },
+        {
+          label: "Contact Info",
+          action: () => handleQuickAction("contact"),
+          icon: <FaLinkedin />,
+        },
+      ],
     },
   ]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    if (!inputValue.trim()) return;
+  const getBotResponse = (userMessage) => {
+    const message = userMessage.toLowerCase();
 
-    // Add user message
-    const userMessage = { text: inputValue, isUser: true };
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue('');
+    // Project-related queries
+    if (message.includes("project") || message.includes("portfolio")) {
+      return {
+        text: "I've built several modern web applications using React, TypeScript, and various libraries. Here are some highlights:\n\n• **E-commerce Dashboard** - React, TypeScript, Redux Toolkit, Chart.js\n• **Task Management App** - Next.js, Tailwind CSS, Firebase\n• **Weather App** - React, OpenWeather API, Geolocation\n\nWant to see the code? Check out my GitHub!",
+        isUser: false,
+        quickActions: [
+          {
+            label: "Open GitHub",
+            action: () =>
+              window.open("https://github.com/yourusername", "_blank"),
+            icon: <FaGithub />,
+          },
+          {
+            label: "View Live Demos",
+            action: () => handleQuickAction("demos"),
+            icon: <FaCode />,
+          },
+        ],
+      };
+    }
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponses = [
-        "I'm a simple chatbot. You can customize my responses in the Chatbot component!"];
-      
-      const botMessage = {
-        text: botResponses[Math.floor(Math.random() * botResponses.length)],
+    // Skills queries
+    if (
+      message.includes("skill") ||
+      message.includes("tech") ||
+      message.includes("stack")
+    ) {
+      return {
+        text: "🛠️ **Core Skills:**\n• React.js / Next.js\n• TypeScript / JavaScript (ES6+)\n• HTML5 / CSS3 / SASS\n• REST APIs / GraphQL\n• Git / GitHub\n\n**Currently Learning:**\n• Node.js / Express\n• MongoDB / PostgreSQL\n• AWS / Docker\n\nInterested in any specific technology?",
+        isUser: false,
+        quickActions: [
+          {
+            label: "React Experience",
+            action: () => handleQuickAction("react"),
+            icon: <FaCode />,
+          },
+        ],
+      };
+    }
+
+    // Contact queries
+    if (
+      message.includes("contact") ||
+      message.includes("email") ||
+      message.includes("hire")
+    ) {
+      return {
+        text: "📫 You can reach me through:\n\n• **Email:** your.email@example.com\n• **LinkedIn:** linkedin.com/in/yourprofile\n• **GitHub:** github.com/yourusername\n\nI'm open to junior developer roles, internships, or freelance projects!",
+        isUser: false,
+        quickActions: [
+          {
+            label: "Open LinkedIn",
+            action: () =>
+              window.open("https://linkedin.com/in/yourprofile", "_blank"),
+            icon: <FaLinkedin />,
+          },
+          {
+            label: "Download Resume",
+            action: () => window.open("/resume.pdf", "_blank"),
+            icon: <FaFileDownload />,
+          },
+        ],
+      };
+    }
+
+    // Experience queries
+    if (message.includes("experience") || message.includes("work")) {
+      return {
+        text: "💼 **Professional Experience:**\n\n**Frontend Developer Intern** @ TechCompany (2023)\n• Built responsive UI components with React & TypeScript\n• Improved app performance by 30% using code splitting\n• Collaborated using Agile/Scrum methodology\n\n**Personal Projects:**\n• 10+ full-stack applications deployed\n• Active open-source contributor\n• Continuous learning through courses & tutorials",
         isUser: false,
       };
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+    }
+
+    // React specific queries
+    if (message.includes("react")) {
+      return {
+        text: "⚛️ **React Experience:**\n\n• **2+ years** building applications with React\n• Experience with hooks, context API, and custom hooks\n• Proficient in state management (Redux, Zustand)\n• Experience with Next.js for SSR/SSG\n• Component library design with styled-components/Tailwind\n• Performance optimization (memoization, code splitting)\n• Testing with Jest and React Testing Library",
+        isUser: false,
+      };
+    }
+
+    // Demos queries
+    if (message.includes("demo") || message.includes("live")) {
+      return {
+        text: "🚀 **Live Project Demos:**\n\n1. **E-commerce Dashboard** - admin panel for online stores\n2. **Task Manager** - Kanban-style productivity app\n3. **Weather App** - real-time weather with geolocation\n4. **Portfolio Site** - this website built with React!\n\nAll projects are deployed on Vercel/Netlify with source code on GitHub.",
+        isUser: false,
+        quickActions: [
+          {
+            label: "View GitHub",
+            action: () =>
+              window.open("https://github.com/yourusername", "_blank"),
+            icon: <FaGithub />,
+          },
+        ],
+      };
+    }
+
+    // Default responses
+    const defaultResponses = [
+      "That's interesting! As a junior developer focused on React and TypeScript, I'm always eager to learn new technologies and take on challenging projects.",
+      "Great question! I specialize in building responsive, accessible web applications with clean code and modern best practices.",
+      "I'm passionate about creating user-friendly interfaces and solving real-world problems with code. Want to know more about my technical approach?",
+      "I believe in writing maintainable code with proper documentation and testing. My goal is to grow into a full-stack developer role.",
+      "Let me know if you'd like to discuss specific projects, technologies, or development methodologies I use!",
+    ];
+
+    return {
+      text: defaultResponses[
+        Math.floor(Math.random() * defaultResponses.length)
+      ],
+      isUser: false,
+      quickActions: [
+        {
+          label: "View Projects",
+          action: () => handleQuickAction("projects"),
+          icon: <FaCode />,
+        },
+        {
+          label: "Contact Info",
+          action: () => handleQuickAction("contact"),
+          icon: <FaLinkedin />,
+        },
+      ],
+    };
+  };
+
+  const handleQuickAction = (action) => {
+    const message = `Tell me about ${action}`;
+    const syntheticEvent = { preventDefault: () => {} };
+    handleSendMessage(syntheticEvent, message);
+  };
+
+  const handleSendMessage = (e, customMessage) => {
+    e.preventDefault();
+    const messageText = customMessage || inputValue.trim();
+    if (!messageText) return;
+
+    // Add user message
+    const userMessage = { text: messageText, isUser: true };
+    setMessages((prev) => [...prev, userMessage]);
+
+    if (!customMessage) {
+      setInputValue("");
+    }
+
+    // Simulate typing delay
+    setTimeout(() => {
+      const botResponse = getBotResponse(messageText);
+      setMessages((prev) => [...prev, botResponse]);
+    }, 800);
   };
 
   return (
     <ChatbotContainer>
-      {isOpen && (
-        <ChatWindow>
-          <ChatHeader>
-            <div>Portfolio Assistant</div>
-            <button 
-              onClick={() => setIsOpen(false)}
-              style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}
-            >
-              <FaTimes />
-            </button>
-          </ChatHeader>
-          <ChatMessages>
-            {messages.map((message, index) => (
-              <Message key={index} $isUser={message.isUser}>
-                {message.text}
+      <ChatWindow $isOpen={isOpen}>
+        <ChatHeader>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <FaRobot /> Portfolio Assistant
+          </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "white",
+              cursor: "pointer",
+              fontSize: "1.1rem",
+              padding: "0.25rem",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "transform 0.2s",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            <FaTimes />
+          </button>
+        </ChatHeader>
+        <ChatMessages>
+          {messages.map((message, index) => (
+            <React.Fragment key={index}>
+              <Message $isUser={message.isUser}>
+                {message.text.split("\n").map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
               </Message>
-            ))}
-            <div ref={messagesEndRef} />
-          </ChatMessages>
-          <form onSubmit={handleSendMessage}>
-            <InputContainer>
-              <Input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Type a message..."
-              />
-              <SendButton type="submit" disabled={!inputValue.trim()}>
-                <FaPaperPlane />
-              </SendButton>
-            </InputContainer>
-          </form>
-        </ChatWindow>
-      )}
-      <ChatbotButton onClick={() => setIsOpen(!isOpen)}>
+              {message.quickActions && !message.isUser && (
+                <QuickActions>
+                  {message.quickActions.map((action, idx) => (
+                    <QuickActionButton key={idx} onClick={action.action}>
+                      {action.icon}
+                      {action.label}
+                    </QuickActionButton>
+                  ))}
+                </QuickActions>
+              )}
+            </React.Fragment>
+          ))}
+          <div ref={messagesEndRef} />
+        </ChatMessages>
+        <form onSubmit={handleSendMessage}>
+          <InputContainer>
+            <Input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Ask about projects, skills, or experience..."
+              onKeyPress={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  handleSendMessage(e);
+                }
+              }}
+            />
+            <SendButton
+              type="submit"
+              disabled={!inputValue.trim()}
+              aria-label="Send message"
+            >
+              <FaPaperPlane />
+            </SendButton>
+          </InputContainer>
+        </form>
+      </ChatWindow>
+      <ChatbotButton
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+      >
         {isOpen ? <FaTimes /> : <FaRobot />}
       </ChatbotButton>
     </ChatbotContainer>
