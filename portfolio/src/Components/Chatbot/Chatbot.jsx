@@ -291,7 +291,7 @@ const Chatbot = () => {
       message.includes("stack")
     ) {
       return {
-        text: "🛠️ **Core Skills:**\n• React.js / Next.js\n• TypeScript / JavaScript (ES6+)\n• HTML5 / CSS3 / SASS\n• REST APIs \n• Git / GitHub\n• Node.js / Express\n• MongoDB / PostgreSQL\n• Basic AWS\nInterested in any specific technology? \n\n**Currently Learning:**\n •Docker",
+        text: "🛠️ **Core Skills:**\n• React.js / Next.js\n• TypeScript / JavaScript (ES6+)\n• HTML5 / CSS3 / SASS\n• REST APIs \n• Git / GitHub\n• Node.js / Express\n• MongoDB / PostgreSQL\n• Basic AWS\nInterested in any specific technology? \n\n**Currently Learning:**\n • Docker \n • Agile/Scrum methodology",
         isUser: false,
         quickActions: [
           {
@@ -331,7 +331,7 @@ const Chatbot = () => {
     // Experience queries
     if (message.includes("experience") || message.includes("work")) {
       return {
-        text: "💼 **Professional Experience:**\n\n**Frontend Developer Intern** @ TechCompany (2023)\n• Built responsive UI components with React & TypeScript\n• Improved app performance by 30% using code splitting\n• Collaborated using Agile/Scrum methodology\n\n**Personal Projects:**\n• 10+ full-stack applications deployed\n• Active open-source contributor\n• Continuous learning through courses & tutorials",
+        text: "💼 **Professional Experience:**\n\n**Frontend Developer Intern** @ TechCompany (2023)\n• Built responsive UI components with React & JavaScript/TypeScript\n• Improved app performance by 30% using code splitting\n• Collaborated using Git/Github methodology\n\n**Personal Projects:**\n• 2+ full-stack applications deployed\n• Active open-source contributor\n• Continuous learning through courses & tutorials",
         isUser: false,
       };
     }
@@ -339,7 +339,7 @@ const Chatbot = () => {
     // React specific queries
     if (message.includes("react")) {
       return {
-        text: "⚛️ **React Experience:**\n\n• **2+ years** building applications with React\n• Experience with hooks, context API, and custom hooks\n• Proficient in state management (Redux, Zustand)\n• Experience with Next.js for SSR/SSG\n• Component library design with styled-components/Tailwind\n• Performance optimization (memoization, code splitting)\n• Testing with Jest and React Testing Library",
+        text: "⚛️ **React Experience:**\n\n• **2+ years** building applications with React\n• Experience with hooks, context API, and custom hooks\n• Proficient in state management\n• Experience with Next.js & Express.js\n• Component library design with styled-components/Tailwind\n• Performance optimization (memoization, code splitting)\n• Testing with Jest and React Testing Library",
         isUser: false,
       };
     }
@@ -366,6 +366,7 @@ const Chatbot = () => {
       "I'm passionate about creating user-friendly interfaces and solving real-world problems with code. Want to know more about my technical approach?",
       "I believe in writing maintainable code with proper documentation and testing. My goal is to grow into a full-stack developer role.",
       "Let me know if you'd like to discuss specific projects, technologies, or development methodologies I use!",
+      "You're very welcome,\n See you soon!!"
     ];
 
     return {
