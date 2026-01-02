@@ -229,7 +229,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
-      text: "👋 Hi! I'm your AI portfolio assistant. I can help visitors learn about your skills, projects, and experience. What would you like to know?",
+      text: "👋 Hi! I'm your AI portfolio assistant. I can help visitors learn about Fikre's skills, projects, and experience. What would you like to know?",
       isUser: false,
       quickActions: [
         {
@@ -267,13 +267,12 @@ const Chatbot = () => {
     // Project-related queries
     if (message.includes("project") || message.includes("portfolio")) {
       return {
-        text: "I've built several modern web applications using React, TypeScript, and various libraries. Here are some highlights:\n\n• **E-commerce Dashboard** - React, TypeScript, Redux Toolkit, Chart.js\n• **Task Management App** - Next.js, Tailwind CSS, Firebase\n• **Weather App** - React, OpenWeather API, Geolocation\n\nWant to see the code? Check out my GitHub!",
+        text: "I've built several modern web applications using React, TypeScript, and various libraries. Here are some highlights:\n\n• **AI Ethiopian Tour + Cultural Concierge App** - React, TypeScript \n• **AI Healthcare & Medical Appointment System** - Next.js, Tailwind CSS, Firebase\n• **AI Shelter Operations & Case Management System** - React, \n\nWant to see the code? Check out my GitHub!",
         isUser: false,
         quickActions: [
           {
             label: "Open GitHub",
-            action: () =>
-              window.open("https://github.com/yourusername", "_blank"),
+            action: () => window.open("https://github.com/Fikre-M", "_blank"),
             icon: <FaGithub />,
           },
           {
@@ -292,7 +291,7 @@ const Chatbot = () => {
       message.includes("stack")
     ) {
       return {
-        text: "🛠️ **Core Skills:**\n• React.js / Next.js\n• TypeScript / JavaScript (ES6+)\n• HTML5 / CSS3 / SASS\n• REST APIs / GraphQL\n• Git / GitHub\n\n**Currently Learning:**\n• Node.js / Express\n• MongoDB / PostgreSQL\n• AWS / Docker\n\nInterested in any specific technology?",
+        text: "🛠️ **Core Skills:**\n• React.js / Next.js\n• TypeScript / JavaScript (ES6+)\n• HTML5 / CSS3 / SASS\n• REST APIs \n• Git / GitHub\n• Node.js / Express\n• MongoDB / PostgreSQL\n• Basic AWS\nInterested in any specific technology? \n\n**Currently Learning:**\n •Docker",
         isUser: false,
         quickActions: [
           {
@@ -348,13 +347,12 @@ const Chatbot = () => {
     // Demos queries
     if (message.includes("demo") || message.includes("live")) {
       return {
-        text: "🚀 **Live Project Demos:**\n\n1. **E-commerce Dashboard** - admin panel for online stores\n2. **Task Manager** - Kanban-style productivity app\n3. **Weather App** - real-time weather with geolocation\n4. **Portfolio Site** - this website built with React!\n\nAll projects are deployed on Vercel/Netlify with source code on GitHub.",
+        text: "🚀 **Live Project Demos:**\n\n1. **AI Ethiopian Tour + Cultural Concierge App** - Full-stack web, AI recommendations and seamless travel planning.\n2. **AI Healthcare & Medical Appointment System** - MERN AI-powered healthcare system app\n3. **AI Shelter Operations & Case Management System** - React Frontend, AI analytics, data viz app\n4. **Portfolio Site** - this website built with React!\n\nAll projects are deployed on Vercel/Netlify with source code on GitHub.",
         isUser: false,
         quickActions: [
           {
             label: "View GitHub",
-            action: () =>
-              window.open("https://github.com/yourusername", "_blank"),
+            action: () => window.open("https://github.com/Fikre-M", "_blank"),
             icon: <FaGithub />,
           },
         ],
