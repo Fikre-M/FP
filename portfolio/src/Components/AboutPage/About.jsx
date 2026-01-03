@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import se2Image from "../../assets/f3.jpg";
 import CirtfImage from "../../assets/fmCirtf.jpg";
+import CirtfImage1 from "../../assets/ai_cirtificate.jpg";
 import NewImage from "../../assets/wes.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Zoom from "react-medium-image-zoom";
@@ -59,6 +60,11 @@ export default function About() {
   // Credentials data
   const credentials = useMemo(
     () => [
+      {
+        id: "cert3",
+        src: CirtfImage1,
+        alt: "Certification 1",
+      },
       {
         id: "cert1",
         src: CirtfImage,
@@ -324,6 +330,9 @@ export default function About() {
                     ))}
                   </div>
                 </div>
+
+
+
               </div>
             </div>
           </div>
