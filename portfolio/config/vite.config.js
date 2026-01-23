@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,10 +8,15 @@ export default defineConfig({
   server: {
     port: 3001,
     open: true,
+    fs: {
+      // Allow serving files from one level up from the project root
+      allow: ['..'],
+    },
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, '../src'),
+      '@config': path.resolve(__dirname, '.'),
     },
   },
   build: {
@@ -25,4 +30,6 @@ export default defineConfig({
       },
     },
   },
-})
+  // Load environment variables from the root .env file
+  envDir: '..',
+});
