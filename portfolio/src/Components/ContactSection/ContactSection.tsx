@@ -149,7 +149,8 @@ const ContactSection: React.FC = () => {
           },
         });
 
-        const result = await emailjs.send(
+        // Use void operator to avoid unhandled promise rejection
+        emailjs.send(
           config.serviceId!,
           config.templateId!,
           {
@@ -159,18 +160,37 @@ const ContactSection: React.FC = () => {
             to_name: "Fikremariam Kassa",
           },
           config.publicKey!
-        );
+        )
+        .then((result) => {
+          console.log("EmailJS Success:", result);
+          
+          setFormStatus({
+            isSubmitting: false,
+            isSuccess: true,
+            error: null,
+          });
+          
+          toast.success("Message sent successfully!");
+          reset();
+        })
+        .catch((error) => {
+          console.error("EmailJS Error Details:", error);
+          const errorMessage =
+            error instanceof Error
+              ? `Failed to send message: ${error.message}`
+              : "Failed to send message. Please try again later.";
 
-        console.log("EmailJS Success:", result);
+          setFormStatus({
+            isSubmitting: false,
+            isSuccess: false,
+            error: errorMessage,
+          });
 
-        setFormStatus({
-          isSubmitting: false,
-          isSuccess: true,
-          error: null,
+          toast.error("Failed to send message");
         });
-
-        toast.success("Message sent successfully!");
-        reset();
+        
+        // Return early since we're handling the promise with .then()
+        return;
       } catch (error) {
         console.error("EmailJS Error Details:", error);
         const errorMessage =
