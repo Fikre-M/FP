@@ -158,7 +158,7 @@ export default function HeroSection() {
         aria-label="Hero Section"
       >
         {/* Background Images Carousel */}
-        <div className="absolute inset-0">
+        {/* <div className="absolute inset-0">
           {slides.map((slide, index) => (
             <div
               key={index}
@@ -177,17 +177,38 @@ export default function HeroSection() {
               ></div>
             </div>
           ))}
+        </div> */}
+
+        {/* Background Images Carousel */}
+        <div className="absolute inset-0 pointer-events-none">
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/85 to-gray-900/90"
+                aria-hidden="true"
+              ></div>
+            </div>
+          ))}
         </div>
 
         {/* Navigation Arrows */}
-        <div className="absolute inset-0 z-20 flex items-center justify-between px-4">
+        {/* <div className="absolute inset-0 z-20 flex items-center justify-between px-4">
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               prevSlide();
             }}
-            onMouseDown={(e) => e.preventDefault()} // Prevent focus on click
             className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Previous slide"
           >
@@ -200,11 +221,37 @@ export default function HeroSection() {
               e.stopPropagation();
               nextSlide();
             }}
-            onMouseDown={(e) => e.preventDefault()} // Prevent focus on click
             className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
             aria-label="Next slide"
           >
             <ChevronRight className="text-white" size={24} aria-hidden="true" />
+          </button>
+        </div> */}
+
+        {/* Navigation Arrows */}
+        <div className="absolute inset-0 z-40 flex items-center justify-between px-4">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              prevSlide();
+            }}
+            className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="text-white" size={24} />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              nextSlide();
+            }}
+            className="w-12 h-12 bg-gray-800/80 hover:bg-gray-700/90 rounded-full flex items-center justify-center border border-gray-600 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="text-white" size={24} />
           </button>
         </div>
 
@@ -220,7 +267,7 @@ export default function HeroSection() {
                   : "bg-gray-400/50 hover:bg-gray-300 w-3"
               }`}
               aria-label={`Go to slide ${index + 1}`}
-              aria-current={index === currentSlide ? 'true' : 'false'}
+              aria-current={index === currentSlide ? "true" : "false"}
             >
               <span className="sr-only">Slide {index + 1}</span>
             </button>
@@ -233,7 +280,9 @@ export default function HeroSection() {
             {/* Loading State */}
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="animate-pulse text-white text-lg">Loading...</div>
+                <div className="animate-pulse text-white text-lg">
+                  Loading...
+                </div>
               </div>
             )}
 
@@ -251,7 +300,10 @@ export default function HeroSection() {
 
             {/* Title */}
             <div className="flex items-center justify-center gap-2 mb-4 sm:mb-6 transform transition-all duration-500 ease-in-out">
-              <Code2 className="text-blue-400 drop-shadow-lg w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
+              <Code2
+                className="text-blue-400 drop-shadow-lg w-6 h-6 sm:w-7 sm:h-7"
+                aria-hidden="true"
+              />
               <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-300 font-semibold drop-shadow-lg">
                 Web Developer / Software Engineer
               </h2>
@@ -259,7 +311,8 @@ export default function HeroSection() {
 
             {/* Value Statement */}
             <p className="text-lg sm:text-xl md:text-2xl text-white mb-3 max-w-2xl mx-auto drop-shadow-lg font-medium leading-relaxed transform transition-all duration-500 ease-in-out">
-              I build responsive, user-friendly, and industry-level web applications.
+              I build responsive, user-friendly, and industry-level web
+              applications.
             </p>
 
             {/* Current Project Description */}
@@ -271,29 +324,29 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 transform transition-all duration-500 ease-in-out relative z-40">
               <button
                 onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('View Projects button clicked!');
-                    handleButtonClick('projects');
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("View Projects button clicked!");
+                  handleButtonClick("projects");
                 }}
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-2xl hover:shadow-blue-500/50 text-center cursor-pointer"
                 aria-label="View my projects"
                 type="button"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
                 View Projects
               </button>
               <button
                 onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('Contact Me button clicked!');
-                    handleButtonClick('contact');
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("Contact Me button clicked!");
+                  handleButtonClick("contact");
                 }}
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl text-center cursor-pointer"
                 aria-label="Contact me"
                 type="button"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
                 Contact Me
               </button>
@@ -303,48 +356,59 @@ export default function HeroSection() {
             <div className="flex justify-center gap-3 sm:gap-4 pt-2 sm:pt-4 relative z-40">
               <button
                 onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('GitHub button clicked!');
-                    handleSocialClick('https://github.com/Fikre-M');
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("GitHub button clicked!");
+                  handleSocialClick("https://github.com/Fikre-M");
                 }}
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="GitHub profile (opens in new tab)"
                 title="View my GitHub profile"
                 type="button"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
-                <Github className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                <Github
+                  className="text-white w-5 h-5 sm:w-6 sm:h-6"
+                  aria-hidden="true"
+                />
               </button>
               <button
                 onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('LinkedIn button clicked!');
-                    handleSocialClick('https://www.linkedin.com/in/fikremariam-kassa-28916062/');
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("LinkedIn button clicked!");
+                  handleSocialClick(
+                    "https://www.linkedin.com/in/fikremariam-kassa-28916062/",
+                  );
                 }}
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="LinkedIn profile (opens in new tab)"
                 title="Connect with me on LinkedIn"
                 type="button"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
-                <Linkedin className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                <Linkedin
+                  className="text-white w-5 h-5 sm:w-6 sm:h-6"
+                  aria-hidden="true"
+                />
               </button>
               <button
                 onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('Mail button clicked!');
-                    handleButtonClick('contact');
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("Mail button clicked!");
+                  handleButtonClick("contact");
                 }}
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="Go to contact section"
                 title="Contact me"
                 type="button"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
               >
-                <Mail className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                <Mail
+                  className="text-white w-5 h-5 sm:w-6 sm:h-6"
+                  aria-hidden="true"
+                />
               </button>
             </div>
           </div>
