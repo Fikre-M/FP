@@ -42,11 +42,44 @@ export default function HeroSection() {
         },
     ];
 
-    const scrollToSection = useCallback((id) => {
-        const element = document.getElementById(id);
+    const scrollToSection = useCallback((sectionId) => {
+        console.log('Scrolling to section:', sectionId);
+        const element = document.getElementById(sectionId);
+        console.log('Found element:', element);
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            element.scrollIntoView({ 
+                behavior: "smooth",
+                block: "start"
+            });
+        } else {
+            console.error('Element not found:', sectionId);
         }
+    }, []);
+
+    const handleButtonClick = useCallback((sectionId) => {
+        console.log('Button clicked for section:', sectionId);
+        // Add visual feedback
+        const button = document.activeElement;
+        if (button) {
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        }
+        scrollToSection(sectionId);
+    }, [scrollToSection]);
+
+    const handleSocialClick = useCallback((url) => {
+        console.log('Opening URL:', url);
+        // Add visual feedback
+        const button = document.activeElement;
+        if (button) {
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
+        }
+        window.open(url, '_blank', 'noopener,noreferrer');
     }, []);
 
     // Handle keyboard navigation
@@ -195,7 +228,7 @@ export default function HeroSection() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12 md:py-24">
+        <div className="relative z-30 min-h-screen flex items-center justify-center px-4 py-12 md:py-24">
           <div className="max-w-4xl w-full text-center px-4 sm:px-6 lg:px-8">
             {/* Loading State */}
             {isLoading && (
@@ -235,46 +268,81 @@ export default function HeroSection() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 transform transition-all duration-500 ease-in-out">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 transform transition-all duration-500 ease-in-out relative z-40">
               <button
-                onClick={() => scrollToSection('projects')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-2xl hover:shadow-blue-500/50 text-center"
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('View Projects button clicked!');
+                    handleButtonClick('projects');
+                }}
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-2xl hover:shadow-blue-500/50 text-center cursor-pointer"
                 aria-label="View my projects"
+                type="button"
+                style={{ pointerEvents: 'auto' }}
               >
                 View Projects
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl text-center"
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Contact Me button clicked!');
+                    handleButtonClick('contact');
+                }}
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/50 hover:bg-white/20 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl text-center cursor-pointer"
                 aria-label="Contact me"
+                type="button"
+                style={{ pointerEvents: 'auto' }}
               >
                 Contact Me
               </button>
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <div className="flex justify-center gap-3 sm:gap-4 pt-2 sm:pt-4 relative z-40">
               <button
-                onClick={() => window.open('https://github.com/Fikre-M', '_blank')}
-                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('GitHub button clicked!');
+                    handleSocialClick('https://github.com/Fikre-M');
+                }}
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="GitHub profile (opens in new tab)"
                 title="View my GitHub profile"
+                type="button"
+                style={{ pointerEvents: 'auto' }}
               >
                 <Github className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </button>
               <button
-                onClick={() => window.open('https://www.linkedin.com/in/fikremariam-kassa-28916062/', '_blank')}
-                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('LinkedIn button clicked!');
+                    handleSocialClick('https://www.linkedin.com/in/fikremariam-kassa-28916062/');
+                }}
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="LinkedIn profile (opens in new tab)"
                 title="Connect with me on LinkedIn"
+                type="button"
+                style={{ pointerEvents: 'auto' }}
               >
                 <Linkedin className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
-                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Mail button clicked!');
+                    handleButtonClick('contact');
+                }}
+                className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl cursor-pointer"
                 aria-label="Go to contact section"
                 title="Contact me"
+                type="button"
+                style={{ pointerEvents: 'auto' }}
               >
                 <Mail className="text-white w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
               </button>
