@@ -141,23 +141,9 @@ function SkillCard({ skill, index, isHovered, onHover, onLeave }) {
 
       {/* Description */}
       <div className="flex-1 flex flex-col">
-        <p className="text-gray-300 text-sm leading-relaxed mb-4">
+        <p className="text-gray-300 text-sm leading-relaxed">
           {skill.description}
         </p>
-
-        {/* Progress Bar */}
-        <div className="mt-auto">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-xs text-gray-400">Proficiency</span>
-            <span className="text-xs text-blue-400 font-semibold">{skill.level}%</span>
-          </div>
-          <div className="w-full bg-gray-600 rounded-full h-2">
-            <div
-              className={`bg-gradient-to-r ${iconGradient} h-2 rounded-full transition-all duration-1000 ease-out`}
-              style={{ width: `${skill.level}%` }}
-            ></div>
-          </div>
-        </div>
       </div>
     </div>
   );

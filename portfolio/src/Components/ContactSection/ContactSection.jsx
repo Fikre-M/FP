@@ -53,6 +53,29 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Basic form validation
+    if (!formData.user_name.trim() || !formData.user_email.trim() || !formData.message.trim()) {
+      setFormStatus({
+        isSubmitting: false,
+        message: "Please fill in all fields",
+        type: "error",
+      });
+      clearStatus();
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.user_email)) {
+      setFormStatus({
+        isSubmitting: false,
+        message: "Please enter a valid email address",
+        type: "error",
+      });
+      clearStatus();
+      return;
+    }
+
     setFormStatus({ isSubmitting: true, message: "", type: "" });
 
     // Check if EmailJS is properly configured
@@ -78,16 +101,24 @@ export default function ContactSection() {
     }
 
     try {
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
+
+      const templateParams = {
+        from_name: formData.user_name,
+        from_email: formData.user_email,
+        message: formData.message,
+        to_name: "Fikremariam Kassa",
+        to_email: "fikreddu@gmail.com",
+        reply_to: formData.user_email,
+      };
+
+      console.log("Sending email with params:", templateParams);
+
       const result = await emailjs.send(
         serviceId,
         templateId,
-        {
-          user_name: formData.user_name,
-          user_email: formData.user_email,
-          message: formData.message,
-          to_name: "Fikremariam Kassa",
-        },
-        publicKey
+        templateParams
       );
 
       console.log("EmailJS Success:", result);
@@ -102,9 +133,19 @@ export default function ContactSection() {
       clearStatus();
     } catch (error) {
       console.error("EmailJS Error:", error);
+      
+      // More detailed error handling
+      let errorMessage = "Failed to send message. Please try again or contact me directly at fikreddu@gmail.com";
+      
+      if (error.text) {
+        errorMessage = `Error: ${error.text}`;
+      } else if (error.message) {
+        errorMessage = `Error: ${error.message}`;
+      }
+
       setFormStatus({
         isSubmitting: false,
-        message: "Failed to send message. Please contact me directly at fikreddu@gmail.com",
+        message: errorMessage,
         type: "error",
       });
 
