@@ -265,9 +265,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             `}
           >
             {project.category === "fullstack-app"
-              ? "FullStack App"
+              ? "Full Stack App"
               : project.category === "frontend-app"
-                ? "Frontend App"
+                ? "Front-end App"
                 : project.category.charAt(0).toUpperCase() +
                   project.category.slice(1)}
           </span>
@@ -307,10 +307,10 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   // Get display name for category
   const getCategoryDisplayName = (category: string) => {
     switch (category) {
-      case "fullstack-app":
-        return "FullStack App";
+      case "Full Stack App":
+        return "Full Stack App";
       case "frontend-app":
-        return "Frontend App";
+        return "Front-end App";
       case "portfolio":
         return "Portfolio";
       case "all":

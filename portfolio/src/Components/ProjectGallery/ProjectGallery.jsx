@@ -187,7 +187,7 @@ export default function ProjectGallery() {
 
   // Define categories in the new format
   const categories = useMemo(() => {
-    return ["all", "fullstack-app", "frontend-app", "portfolio"];
+    return ["all", "Full Stack App", "Front-end App", "portfolio"];
   }, []);
 
   // Get display name for category
