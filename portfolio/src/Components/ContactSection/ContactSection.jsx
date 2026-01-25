@@ -205,7 +205,7 @@ export default function ContactSection() {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/fikremariam-kassa-28916062/"
+              href="https://www.linkedin.com/in/fikremariam-k-28916062/"
               target="_blank"
               rel="noopener noreferrer"
               title="LinkedIn"
@@ -232,8 +232,8 @@ export default function ContactSection() {
                   formStatus.type === "success"
                     ? "bg-green-600 text-white"
                     : formStatus.type === "error"
-                    ? "bg-red-600 text-white"
-                    : "bg-blue-600 text-white"
+                      ? "bg-red-600 text-white"
+                      : "bg-blue-600 text-white"
                 }`}
               >
                 {formStatus.message}

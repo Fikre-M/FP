@@ -318,7 +318,9 @@ export default function HeroSection() {
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleSocialClick('https://www.linkedin.com/in/fikremariam-kassa-28916062/');
+                    handleSocialClick(
+                      "https://www.linkedin.com/in/fikremariam-k-28916062/",
+                    );
                 }}
                 className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-110 hover:ring-2 hover:ring-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 shadow-xl"
                 aria-label="LinkedIn profile (opens in new tab)"

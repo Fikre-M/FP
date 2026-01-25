@@ -6,22 +6,25 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 const socialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com/yourusername",
+    url: "https://github.com/Fikre-M",
     icon: <FaGithub className="w-5 h-5" />,
-    color: "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+    color:
+      "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://www.linkedin.com/in/fikremariam-k-28916062/",
     icon: <FaLinkedin className="w-5 h-5" />,
-    color: "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+    color:
+      "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
   },
   {
     name: "Email",
     url: "mailto:your.email@example.com",
     icon: <FaEnvelope className="w-5 h-5" />,
-    color: "text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-  }
+    color:
+      "text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300",
+  },
 ];
 
 const navLinks = [
