@@ -82,19 +82,21 @@ export default function About() {
   // Experience data
   const experienceItems = useMemo(
     () => [
-      "Frontend Developer at Evangadi Bootcamp. For more experience, see the project section.",
+      "Frontend Developer at Evangadi Bootcamp (2025)",
+      "ABC Company as a software engineer (2020-2022)",
       "Teaching and Research (2013–2018)",
     ],
-    []
+    [],
   );
 
   // Education data
   const educationItems = useMemo(
     () => [
-      "M.Sc. in Paleoanthropology, Addis Ababa University",
-      "B.A. in History & Heritage Management, Dire Dawa University",
+      "M.Sc. Paleoanthropology, Addis Ababa University",
+      "B.A. History & Heritage Mgt, Dire Dawa University",
+      "Certifications: Full-Stack MERN & AI & Career Empowerment",
     ],
-    []
+    [],
   );
 
   // Handle social link clicks
