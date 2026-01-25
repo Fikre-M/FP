@@ -28,36 +28,51 @@ interface ProjectGalleryProps {
 }
 
 const defaultProjects: Project[] = [
+  // Full Stack Apps
   {
     id: 1,
+    img: "/images/amazon.jpg",
+    name: "Amazon Clone - E-commerce Platform",
+    desc: "A full-stack Amazon clone built with React, Node.js, and Firebase. This e-commerce platform includes user authentication, product listings, cart functionality, and order processing with a responsive design.",
+    github: "https://github.com/Fikre-M/amazon_replica",
+    website: "https://amazon-replica-fikre.netlify.app/",
+    category: "Full Stack App",
+    technologies: ["React", "Node.js", "Firebase", "Redux"],
+  },
+  {
+    id: 2,
     img: "/images/evangadi_forum.jpg",
     name: "AI Ethiopian Tour + Cultural Concierge App",
     desc: "A responsive question and answer forum application built with Vite React and Node.js, featuring a MySQL database. This project provides a platform for users to engage in discussions and share ideas, showcasing a clean and intuitive design.",
     github: "https://github.com/Fikre-M/evangadi_forum",
     website: "https://evangadiforum.knoweledagebased.com/",
-    category: "fullstack-app",
+    category: "Full Stack App",
     technologies: ["React", "Node.js", "MySQL", "Vite"],
   },
-  {
-    id: 2,
-    img: "/images/apple_bootstrap.jpg",
-    name: "AI Healthcare & Medical Appointment System",
-    desc: "A responsive Apple website clone built with Vite React and Node.js, featuring a MySQL database. This project showcases a sleek and modern interface, mirroring Apple's aesthetic.",
-    github: "https://github.com/Fikre-M/apllee-clone",
-    website: "https://startling-heliotrope-e68744.netlify.app/",
-    category: "fullstack-app",
-    technologies: ["React", "Node.js", "MySQL", "Bootstrap"],
-  },
+  
+  // Front-end Apps
   {
     id: 3,
-    img: "/images/amazon.jpg",
-    name: "AI Shelter Operations & Case Management System",
-    desc: "A responsive Amazon website clone created with Vite React and Node.js, utilizing a firebase database. This project demonstrates a robust e-commerce platform with a user-friendly interface.",
-    github: "https://github.com/Fikre-M/amazon_replica",
-    website: "https://amazon-replica-fikre.netlify.app/",
-    category: "fullstack-app",
-    technologies: ["React", "Node.js", "Firebase", "Vite"],
+    img: "/images/apple_bootstrap.jpg",
+    name: "Apple Website Clone",
+    desc: "A responsive Apple website clone built with React and Bootstrap. This project showcases a sleek and modern interface, mirroring Apple's aesthetic with clean design and smooth animations.",
+    github: "https://github.com/Fikre-M/apllee-clone",
+    website: "https://startling-heliotrope-e68744.netlify.app/",
+    category: "Front-end App",
+    technologies: ["React", "Bootstrap", "CSS3", "Responsive Design"],
   },
+  {
+    id: 4,
+    img: "/images/clock_resized.jpg",
+    name: "Digital Clock App",
+    desc: "I developed an interactive Digital Clock application integrated with a chatbot using Vite and React to provide users with real-time timekeeping and conversational assistance within a single, modern web interface.",
+    github: "https://github.com/Fikre-M/DigitalClockApp",
+    website: "https://clock.rohaazage.com/",
+    category: "Front-end App",
+    technologies: ["React", "Vite", "JavaScript", "CSS"],
+  },
+  
+  // Portfolio
   {
     id: 5,
     img: "/images/fms.png",
@@ -65,18 +80,8 @@ const defaultProjects: Project[] = [
     desc: "I built a personal portfolio website using Vite, React, and Tailwind CSS to deliver a fast, modern, and responsive platform that showcases my projects and skills. The site features a clean user interface designed to highlight my professional experience and technical expertise.",
     github: "https://github.com/Fikre-M/FP",
     website: "https://www.linkedin.com/in/fikremariam-kassa-28916062/",
-    category: "portfolio",
+    category: "Portfolio",
     technologies: ["React", "Tailwind CSS", "Vite", "TypeScript"],
-  },
-  {
-    id: 6,
-    img: "/images/clock_resized.jpg",
-    name: "Digital Clock App",
-    desc: "I developed an interactive Digital Clock application integrated with a chatbot using Vite and React to provide users with real-time timekeeping and conversational assistance within a single, modern web interface.",
-    github: "https://github.com/Fikre-M/DigitalClockApp",
-    website: "https://clock.rohaazage.com/",
-    category: "frontend-app",
-    technologies: ["React", "Vite", "JavaScript", "CSS"],
   },
 ];
 
@@ -276,14 +281,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     </article>
   );
 };
-
-const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   projects = defaultProjects,
   loading = false,
   error,
   onRetry,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleImageError = useCallback((projectId: number) => {
@@ -295,25 +298,26 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   }, []);
 
   const handleClearFilters = useCallback(() => {
-    setSelectedCategory("all");
+    setSelectedCategory("All");
     setSearchTerm("");
   }, []);
 
-  // Define categories in the new format
+  // Define categories based on available projects
   const categories = useMemo(() => {
-    return ["all", "fullstack-app", "frontend-app", "portfolio"];
+    // Always include these categories in the filter
+    return ["All", "Full Stack App", "Front-end App", "Portfolio"];
   }, []);
 
   // Get display name for category
   const getCategoryDisplayName = (category: string) => {
     switch (category) {
-      case "Full Stack App":
+      case "fullstack-app":
         return "Full Stack App";
       case "frontend-app":
         return "Front-end App";
       case "portfolio":
         return "Portfolio";
-      case "all":
+      case "All":
         return "All";
       default:
         return category.charAt(0).toUpperCase() + category.slice(1);
@@ -322,19 +326,41 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   // Filter projects based on category and search term
   const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
-      const matchesCategory =
-        selectedCategory === "all" || project.category === selectedCategory;
-      const matchesSearch =
+    console.log('Filtering projects with:', { 
+      selectedCategory, 
+      searchTerm,
+      allCategories: categories,
+      projects: projects.map(p => ({ name: p.name, category: p.category }))
+    });
+    
+    const result = projects.filter((project) => {
+      // Handle 'All' category
+      const isAll = selectedCategory === 'All' || selectedCategory === 'all';
+      const categoryMatch = isAll || getCategoryDisplayName(project.category) === selectedCategory;
+      
+      console.log(`Project '${project.name}' (${project.category}):`, {
+        matchesCategory: categoryMatch,
+        isAll,
+        selectedCategory,
+        projectCategory: project.category
+      });
+      
+      const searchMatch = 
+        searchTerm === "" || 
         project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.desc.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (project.technologies &&
           project.technologies.some((tech) =>
-            tech.toLowerCase().includes(searchTerm.toLowerCase()),
-          ));
-      return matchesCategory && matchesSearch;
+            tech.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        );
+      
+      return categoryMatch && searchMatch;
     });
-  }, [projects, selectedCategory, searchTerm]);
+    
+    console.log('Filtered projects:', result);
+    return result;
+  }, [projects, selectedCategory, searchTerm, categories]);
 
   if (loading) {
     return (
@@ -445,24 +471,27 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               role="group"
               aria-label="Filter by category"
             >
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`
-                    px-4 py-2 rounded-lg transition-all duration-200 
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                    ${
-                      selectedCategory === category
-                        ? "bg-blue-500 text-white ring-2 ring-blue-400 ring-opacity-50 shadow-lg"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
-                    }
-                  `}
-                  aria-pressed={selectedCategory === category}
-                >
-                  {getCategoryDisplayName(category)}
-                </button>
-              ))}
+              {categories.map((category) => {
+                const isActive = selectedCategory === category;
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`
+                      px-4 py-2 rounded-lg transition-all duration-200 
+                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                      ${
+                        isActive
+                          ? "bg-blue-500 text-white ring-2 ring-blue-400 ring-opacity-50 shadow-lg"
+                          : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
+                      }
+                    `}
+                    aria-pressed={isActive}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
