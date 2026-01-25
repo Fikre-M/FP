@@ -253,7 +253,7 @@ export default function HeroSection() {
             <div className="flex items-center justify-center gap-2 mb-4 sm:mb-6 transform transition-all duration-500 ease-in-out">
               <Code2 className="text-blue-400 drop-shadow-lg w-6 h-6 sm:w-7 sm:h-7" aria-hidden="true" />
               <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-300 font-semibold drop-shadow-lg">
-                Web Developer / Software Engineer
+                Web Developer / Software Engineer  (Full Stack - MERN)
               </h2>
             </div>
 
