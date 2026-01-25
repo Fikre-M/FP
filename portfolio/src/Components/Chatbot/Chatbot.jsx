@@ -64,7 +64,10 @@ const ChatWindow = styled.div`
   transform: ${(props) =>
     props.$isOpen ? "translateY(0)" : "translateY(10px)"};
   visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
 
   @media (max-width: 768px) {
     width: calc(100vw - 2rem);
@@ -324,7 +327,14 @@ const Chatbot = () => {
           },
           {
             label: "Download Resume",
-            action: () => window.open("/resume.pdf", "_blank"),
+            action: () => {
+              const link = document.createElement("a");
+              link.href = "/resume/Kassa_Resume.pdf";
+              link.download = "kassa_Resume.pdf"; 
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            },
             icon: <FaFileDownload />,
           },
         ],
@@ -369,7 +379,7 @@ const Chatbot = () => {
       "I'm passionate about creating user-friendly interfaces and solving real-world problems with code. Want to know more about my technical approach?",
       "I believe in writing maintainable code with proper documentation and testing. My goal is to grow into a full-stack developer role.",
       "Let me know if you'd like to discuss specific projects, technologies, or development methodologies I use!",
-      "You're very welcome,\n See you soon!!"
+      "You're very welcome,\n See you soon!!",
     ];
 
     return {
