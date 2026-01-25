@@ -316,7 +316,10 @@ const Chatbot = () => {
           {
             label: "Open LinkedIn",
             action: () =>
-              window.open("https://linkedin.com/in/yourprofile", "_blank"),
+              window.open(
+                "https://www.linkedin.com/in/fikremariam-k-28916062/",
+                "_blank",
+              ),
             icon: <FaLinkedin />,
           },
           {

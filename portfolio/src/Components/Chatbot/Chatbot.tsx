@@ -112,7 +112,10 @@ const Chatbot: React.FC = () => {
           {
             label: "Open LinkedIn",
             action: () =>
-              window.open("https://www.linkedin.com/in/fikremariam-kassa-28916062/", "_blank"),
+              window.open(
+                "https://www.linkedin.com/in/fikremariam-k-28916062/",
+                "_blank",
+              ),
             icon: <Linkedin className="w-4 h-4" />,
           },
           {
