@@ -95,7 +95,18 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 bg-[#141F2E] shadow-md mb-4 z-50">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" onClick={(e) => handleNavClick(e, "home")}>
+        {/* <a href="#home" onClick={(e) => handleNavClick(e, "home")}>
+          <div className="text-white w-32">
+            <Logo />
+          </div>
+        </a> */}
+        <a
+          href="#home"
+          onClick={(e) => {
+            handleNavClick(e, "home");
+            window.location.reload(); // Refreshes the page
+          }}
+        >
           <div className="text-white w-32">
             <Logo />
           </div>
@@ -118,7 +129,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          
+
           {/* Social Media Links */}
           <div className="hidden md:flex items-center space-x-2">
             {socialLinks.map((social) => (
@@ -133,17 +144,27 @@ export default function Header() {
                 {social.icon}
               </a>
             ))}
-            
+
             {/* Theme Toggle */}
             <button
               onClick={() => {
-                document.documentElement.classList.toggle('dark');
+                document.documentElement.classList.toggle("dark");
               }}
               className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 text-white transition-colors duration-200"
               aria-label="Toggle theme"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
               </svg>
             </button>
           </div>
@@ -251,7 +272,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          
+
           {/* Social Media Icons for Mobile */}
           <div className="flex justify-center space-x-4 mt-4 pt-4 border-t border-gray-600">
             {socialLinks.map((social) => (
