@@ -25,14 +25,14 @@ export const skills: Skill[] = [
       "Proficient in both SQL (MySQL, PostgreSQL) and NoSQL (MongoDB, Firebase) databases. Experience with database design, optimization, indexing, and data modeling for high-performance applications.",
     level: 80,
   },
-  {
-    id: "mobile",
-    icon: "FaMobile",
-    title: "Mobile Development",
-    description:
-      "Experience in cross-platform mobile development using React Native and Flutter. Knowledge of mobile-first design principles, native device features, and app store deployment processes.",
-    level: 75,
-  },
+  // {
+  //   id: "mobile",
+  //   icon: "FaMobile",
+  //   title: "Mobile Development",
+  //   description:
+  //     "Experience in cross-platform mobile development using React Native and Flutter. Knowledge of mobile-first design principles, native device features, and app store deployment processes.",
+  //   level: 75,
+  // },
   {
     id: "devops",
     icon: "FaCloudUploadAlt",
@@ -57,11 +57,11 @@ export const skills: Skill[] = [
       "Skilled in unit testing, integration testing, and end-to-end testing using Jest, Vitest, Cypress, and Testing Library. Focus on test-driven development and maintaining high code coverage.",
     level: 82,
   },
-  {
-    id: "tools",
-    icon: "FaCogs",
-    title: "Development Tools & Workflow",
-    description: "Build Tools: Vite, Webpack, Rollup, Parcel | Design & Collaboration: Figma, Adobe XD, Slack, Jira, Notion | Code Quality: ESLint, Prettier, Husky, SonarQube",
-    level: 88,
-  },
+  // {
+  //   id: "tools",
+  //   icon: "FaCogs",
+  //   title: "Development Tools & Workflow",
+  //   description: "Build Tools: Vite, Webpack, Rollup, Parcel | Design & Collaboration: Figma, Adobe XD, Slack, Jira, Notion | Code Quality: ESLint, Prettier, Husky, SonarQube",
+  //   level: 88,
+  // },
 ];
