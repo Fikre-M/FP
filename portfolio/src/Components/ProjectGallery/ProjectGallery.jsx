@@ -10,7 +10,7 @@ const profilesData = [
     desc: "A responsive question and answer forum application built with Vite React and Node.js, featuring a MySQL database. This project provides a platform for users to engage in discussions and share ideas, showcasing a clean and intuitive design.",
     github: "https://github.com/Fikre-M/evangadi_forum",
     website: "https://evangadiforum.knoweledagebased.com/",
-    category: "forum",
+    category: "fullstack-app",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const profilesData = [
     desc: "A responsive Apple website clone built with Vite React and Node.js, featuring a MySQL database. This project showcases a sleek and modern interface, mirroring Apple's aesthetic.",
     github: "https://github.com/Fikre-M/apllee-clone",
     website: "https://startling-heliotrope-e68744.netlify.app/",
-    category: "clone",
+    category: "fullstack-app",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const profilesData = [
     desc: "A responsive Amazon website clone created with Vite React and Node.js, utilizing a firebase database. This project demonstrates a robust e-commerce platform with a user-friendly interface.",
     github: "https://github.com/Fikre-M/amazon_replica",
     website: "https://amazon-replica-fikre.netlify.app/",
-    category: "clone",
+    category: "fullstack-app",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const profilesData = [
     desc: "A responsive Netflix website clone developed using Vite React and Node.js. This project replicates the popular streaming service's user interface and experience.",
     github: "https://github.com/Fikre-M/Netflix",
     website: "https://edu-react-movie-app.knoweledagebased.com/",
-    category: "clone",
+    category: "fullstack-app",
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const profilesData = [
     desc: "I developed an interactive Digital Clock application integrated with a chatbot using Vite and React to provide users with real-time timekeeping and conversational assistance within a single, modern web interface.",
     github: "https://github.com/Fikre-M/DigitalClockApp",
     website: "https://clock.rohaazage.com/",
-    category: "app",
+    category: "frontend-app",
   },
 ];
 
@@ -168,7 +168,12 @@ function ProjectCard({ profile, index }) {
         <p className="text-gray-300 leading-relaxed">{profile.desc}</p>
         <div className="mt-4">
           <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-200 bg-blue-600/30 rounded-full">
-            {profile.category}
+            {profile.category === "fullstack-app"
+              ? "FullStack App"
+              : profile.category === "frontend-app"
+                ? "Frontend App"
+                : profile.category.charAt(0).toUpperCase() +
+                  profile.category.slice(1)}
           </span>
         </div>
       </div>
@@ -180,11 +185,26 @@ export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Get unique categories
+  // Define categories in the new format
   const categories = useMemo(() => {
-    const cats = ["all", ...new Set(profilesData.map((p) => p.category))];
-    return cats;
+    return ["all", "fullstack-app", "frontend-app", "portfolio"];
   }, []);
+
+  // Get display name for category
+  const getCategoryDisplayName = (category) => {
+    switch (category) {
+      case "fullstack-app":
+        return "FullStack App";
+      case "frontend-app":
+        return "Frontend App";
+      case "portfolio":
+        return "Portfolio";
+      case "all":
+        return "All";
+      default:
+        return category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  };
 
   // Filter profiles based on category and search term
   const filteredProfiles = useMemo(() => {
@@ -232,7 +252,7 @@ export default function ProjectGallery() {
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                 }`}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {getCategoryDisplayName(category)}
               </button>
             ))}
           </div>
@@ -242,11 +262,7 @@ export default function ProjectGallery() {
       <div className="bg-gray-800 rounded-2xl shadow-2xl p-10 w-full max-w-5xl mx-auto">
         {filteredProfiles.length > 0 ? (
           filteredProfiles.map((profile, idx) => (
-            <ProjectCard
-              key={profile.id}
-              profile={profile}
-              index={idx}
-            />
+            <ProjectCard key={profile.id} profile={profile} index={idx} />
           ))
         ) : (
           <div className="text-center py-16">

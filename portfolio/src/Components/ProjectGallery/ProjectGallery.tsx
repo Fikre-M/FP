@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { Search, X } from 'lucide-react';
-import { LoadingSkeleton, ErrorState, EmptyState, Button } from '../UI';
+import React, { useState, useMemo, useCallback } from "react";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { Search, X } from "lucide-react";
+import { LoadingSkeleton, ErrorState, EmptyState, Button } from "../UI";
 
 interface Project {
   id: number;
@@ -35,7 +35,7 @@ const defaultProjects: Project[] = [
     desc: "A responsive question and answer forum application built with Vite React and Node.js, featuring a MySQL database. This project provides a platform for users to engage in discussions and share ideas, showcasing a clean and intuitive design.",
     github: "https://github.com/Fikre-M/evangadi_forum",
     website: "https://evangadiforum.knoweledagebased.com/",
-    category: "forum",
+    category: "fullstack-app",
     technologies: ["React", "Node.js", "MySQL", "Vite"],
   },
   {
@@ -45,7 +45,7 @@ const defaultProjects: Project[] = [
     desc: "A responsive Apple website clone built with Vite React and Node.js, featuring a MySQL database. This project showcases a sleek and modern interface, mirroring Apple's aesthetic.",
     github: "https://github.com/Fikre-M/apllee-clone",
     website: "https://startling-heliotrope-e68744.netlify.app/",
-    category: "clone",
+    category: "fullstack-app",
     technologies: ["React", "Node.js", "MySQL", "Bootstrap"],
   },
   {
@@ -55,7 +55,7 @@ const defaultProjects: Project[] = [
     desc: "A responsive Amazon website clone created with Vite React and Node.js, utilizing a firebase database. This project demonstrates a robust e-commerce platform with a user-friendly interface.",
     github: "https://github.com/Fikre-M/amazon_replica",
     website: "https://amazon-replica-fikre.netlify.app/",
-    category: "clone",
+    category: "fullstack-app",
     technologies: ["React", "Node.js", "Firebase", "Vite"],
   },
   {
@@ -75,7 +75,7 @@ const defaultProjects: Project[] = [
     desc: "I developed an interactive Digital Clock application integrated with a chatbot using Vite and React to provide users with real-time timekeeping and conversational assistance within a single, modern web interface.",
     github: "https://github.com/Fikre-M/DigitalClockApp",
     website: "https://clock.rohaazage.com/",
-    category: "app",
+    category: "frontend-app",
     technologies: ["React", "Vite", "JavaScript", "CSS"],
   },
 ];
@@ -107,7 +107,11 @@ const SocialIcon: React.FC<{
   );
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  index,
+  onImageError,
+}) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -140,9 +144,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
           className={`
             bg-gray-700 rounded-xl w-60 h-45 flex items-center justify-center 
             relative overflow-hidden shadow-lg transition-all duration-500 cursor-pointer
-            ${isHovered
-              ? "shadow-2xl shadow-blue-500/25 -translate-y-3 scale-105 ring-4 ring-blue-500 ring-opacity-60"
-              : "hover:shadow-2xl hover:-translate-y-2 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-40"
+            ${
+              isHovered
+                ? "shadow-2xl shadow-blue-500/25 -translate-y-3 scale-105 ring-4 ring-blue-500 ring-opacity-60"
+                : "hover:shadow-2xl hover:-translate-y-2 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-40"
             }
           `}
           style={{ height: "180px" }}
@@ -150,10 +155,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
           {!imageError ? (
             <>
               {!imageLoaded && (
-                <LoadingSkeleton 
-                  variant="image" 
-                  className="absolute inset-0" 
-                />
+                <LoadingSkeleton variant="image" className="absolute inset-0" />
               )}
               <img
                 src={project.img}
@@ -171,7 +173,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
           ) : (
             <div className="flex items-center justify-center w-full h-full text-gray-400">
               <div className="text-center">
-                <div className="text-4xl mb-2" aria-hidden="true">📷</div>
+                <div className="text-4xl mb-2" aria-hidden="true">
+                  📷
+                </div>
                 <div className="text-sm">Image not available</div>
               </div>
             </div>
@@ -206,9 +210,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
         className={`
           flex-1 bg-gray-700 rounded-2xl p-6 flex flex-col justify-center 
           shadow-lg transition-all duration-500 cursor-pointer
-          ${isHovered
-            ? "shadow-2xl shadow-blue-500/25 -translate-y-3 bg-gray-600 ring-2 ring-blue-500 ring-opacity-50"
-            : "hover:shadow-2xl hover:-translate-y-2 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
+          ${
+            isHovered
+              ? "shadow-2xl shadow-blue-500/25 -translate-y-3 bg-gray-600 ring-2 ring-blue-500 ring-opacity-50"
+              : "hover:shadow-2xl hover:-translate-y-2 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
           }
         `}
       >
@@ -220,7 +225,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
         >
           {project.name}
         </h3>
-        
+
         <p
           className={`
             leading-relaxed mb-4 transition-colors duration-300 
@@ -252,13 +257,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, onImageError 
             className={`
               inline-block px-3 py-1 text-xs font-semibold rounded-full 
               transition-all duration-300
-              ${isHovered
-                ? "text-blue-100 bg-blue-500/50 ring-1 ring-blue-400"
-                : "text-blue-200 bg-blue-600/30"
+              ${
+                isHovered
+                  ? "text-blue-100 bg-blue-500/50 ring-1 ring-blue-400"
+                  : "text-blue-200 bg-blue-600/30"
               }
             `}
           >
-            {project.category}
+            {project.category === "fullstack-app"
+              ? "FullStack App"
+              : project.category === "frontend-app"
+                ? "Frontend App"
+                : project.category.charAt(0).toUpperCase() +
+                  project.category.slice(1)}
           </span>
         </div>
       </div>
@@ -270,7 +281,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
   projects = defaultProjects,
   loading = false,
   error,
-  onRetry
+  onRetry,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -288,31 +299,56 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
     setSearchTerm("");
   }, []);
 
-  // Get unique categories
+  // Define categories in the new format
   const categories = useMemo(() => {
-    const cats = ["all", ...new Set(projects.map(p => p.category))];
-    return cats;
-  }, [projects]);
+    return ["all", "fullstack-app", "frontend-app", "portfolio"];
+  }, []);
+
+  // Get display name for category
+  const getCategoryDisplayName = (category: string) => {
+    switch (category) {
+      case "fullstack-app":
+        return "FullStack App";
+      case "frontend-app":
+        return "Frontend App";
+      case "portfolio":
+        return "Portfolio";
+      case "all":
+        return "All";
+      default:
+        return category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  };
 
   // Filter projects based on category and search term
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
-      const matchesCategory = selectedCategory === "all" || project.category === selectedCategory;
-      const matchesSearch = 
+    return projects.filter((project) => {
+      const matchesCategory =
+        selectedCategory === "all" || project.category === selectedCategory;
+      const matchesSearch =
         project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.desc.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (project.technologies && project.technologies.some(tech => 
-          tech.toLowerCase().includes(searchTerm.toLowerCase())
-        ));
+        (project.technologies &&
+          project.technologies.some((tech) =>
+            tech.toLowerCase().includes(searchTerm.toLowerCase()),
+          ));
       return matchesCategory && matchesSearch;
     });
   }, [projects, selectedCategory, searchTerm]);
 
   if (loading) {
     return (
-      <section className="w-full min-h-screen py-10" aria-label="Loading projects">
+      <section
+        className="w-full min-h-screen py-10"
+        aria-label="Loading projects"
+      >
         <div className="max-w-5xl mx-auto px-4">
-          <LoadingSkeleton variant="text" width="w-64" height="h-8" className="mx-auto mb-8" />
+          <LoadingSkeleton
+            variant="text"
+            width="w-64"
+            height="h-8"
+            className="mx-auto mb-8"
+          />
           <div className="space-y-8">
             {Array.from({ length: 3 }).map((_, index) => (
               <div key={index} className="flex flex-col md:flex-row gap-8">
@@ -332,7 +368,10 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
 
   if (error) {
     return (
-      <section className="w-full min-h-screen py-10" aria-label="Error loading projects">
+      <section
+        className="w-full min-h-screen py-10"
+        aria-label="Error loading projects"
+      >
         <div className="max-w-5xl mx-auto px-4">
           <ErrorState
             title="Failed to load projects"
@@ -350,10 +389,11 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
       <div className="max-w-5xl mx-auto px-4">
         {/* Header */}
         <header className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            My Projects
-          </h2>
-          <div className="mx-auto h-1 w-24 bg-blue-500 rounded" aria-hidden="true" />
+          <h2 className="text-4xl font-bold text-white mb-4">My Projects</h2>
+          <div
+            className="mx-auto h-1 w-24 bg-blue-500 rounded"
+            aria-hidden="true"
+          />
         </header>
 
         {/* Search and Filter Controls */}
@@ -378,9 +418,9 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 "
                 aria-describedby="search-help"
               />
-              <Search 
-                className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" 
-                aria-hidden="true" 
+              <Search
+                className="absolute left-3 top-2.5 text-gray-400 w-4 h-4"
+                aria-hidden="true"
               />
               {searchTerm && (
                 <button
@@ -400,7 +440,11 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             </div>
 
             {/* Category Filter */}
-            <div className="flex gap-2 flex-wrap justify-center" role="group" aria-label="Filter by category">
+            <div
+              className="flex gap-2 flex-wrap justify-center"
+              role="group"
+              aria-label="Filter by category"
+            >
               {categories.map((category) => (
                 <button
                   key={category}
@@ -408,14 +452,15 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                   className={`
                     px-4 py-2 rounded-lg transition-all duration-200 
                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                    ${selectedCategory === category
-                      ? "bg-blue-500 text-white ring-2 ring-blue-400 ring-opacity-50 shadow-lg"
-                      : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
+                    ${
+                      selectedCategory === category
+                        ? "bg-blue-500 text-white ring-2 ring-blue-400 ring-opacity-50 shadow-lg"
+                        : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:ring-2 hover:ring-blue-500 hover:ring-opacity-30"
                     }
                   `}
                   aria-pressed={selectedCategory === category}
                 >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {getCategoryDisplayName(category)}
                 </button>
               ))}
             </div>
@@ -427,7 +472,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <span className="text-sm text-gray-400">Active filters:</span>
               {selectedCategory !== "all" && (
                 <span className="px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  {selectedCategory}
+                  {getCategoryDisplayName(selectedCategory)}
                 </span>
               )}
               {searchTerm && (
@@ -463,15 +508,29 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             </div>
           ) : (
             <EmptyState
-              variant={searchTerm || selectedCategory !== "all" ? "search" : "data"}
-              title={searchTerm || selectedCategory !== "all" ? "No projects found" : "No projects available"}
+              variant={
+                searchTerm || selectedCategory !== "all" ? "search" : "data"
+              }
+              title={
+                searchTerm || selectedCategory !== "all"
+                  ? "No projects found"
+                  : "No projects available"
+              }
               message={
                 searchTerm || selectedCategory !== "all"
                   ? "Try adjusting your search terms or filters to find what you're looking for."
                   : "Projects will appear here once they are added."
               }
-              actionLabel={searchTerm || selectedCategory !== "all" ? "Clear filters" : undefined}
-              onAction={searchTerm || selectedCategory !== "all" ? handleClearFilters : undefined}
+              actionLabel={
+                searchTerm || selectedCategory !== "all"
+                  ? "Clear filters"
+                  : undefined
+              }
+              onAction={
+                searchTerm || selectedCategory !== "all"
+                  ? handleClearFilters
+                  : undefined
+              }
             />
           )}
         </main>
